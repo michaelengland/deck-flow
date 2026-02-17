@@ -1,0 +1,11 @@
+{
+  "name": "deck-flow",
+  "description": "Presentation workflow plugin with three phases: narrative (brainstorm story), craft (plan slides), and present (generate PPTX)",
+  "version": "0.1.0",
+  "author": {
+    "name": "Michael",
+    "email": "mg.england@gmail.com"
+  },
+  "license": "MIT",
+  "keywords": ["presentations", "powerpoint", "slides", "narrative", "workflow", "pptx"]
+}
