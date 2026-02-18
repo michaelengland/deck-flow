@@ -1,6 +1,6 @@
 ---
 name: craft
-description: "Use AFTER /deck-flow:narrative to plan specific slides. Translates narrative into slide-by-slide outline with layout recommendations. Invoke with /deck-flow:craft when user has an approved narrative and wants to plan slides."
+description: "This skill should be used when the user asks to plan slides, create a deck outline, design slide layouts, or invoke /deck-flow:craft. Use AFTER /deck-flow:narrative. Translates narrative into slide-by-slide outline with layout recommendations."
 ---
 
 # Craft
@@ -55,9 +55,9 @@ For each slide, specify:
 
 ### Layout Options
 
-**For detailed layout guidance**, read `references/slide-patterns.md` in this plugin.
+**For detailed layout guidance**, read `${CLAUDE_PLUGIN_ROOT}/references/slide-patterns.md`.
 
-**Common layouts:** Title slide, Section header, Single message, Bullet list, Two-column, Full-bleed image, Image + text, Single chart, Big number, Quote, Timeline, Q&A.
+**Common layouts:** Title slide, Section header, Single message, Bullet list, Two-column, Three-column, Full-bleed image, Image + text, Image grid, Single chart, Chart + interpretation, Comparison table, Big number, Quote, Timeline, Steps, Cycle, Summary, Call to action, Q&A. See reference for full catalog with usage guidance.
 
 ### 4. Validate Incrementally
 
@@ -107,9 +107,8 @@ Save the validated plan to: `docs/plans/YYYY-MM-DD-<topic>-deck-plan.md`
 
 After plan approval, offer next steps:
 
-> "Your deck plan is ready. Next steps:
+> "Your deck plan is ready. Next step:
 > - Use **/deck-flow:present** to generate the actual PowerPoint
-> - Or use the **pptx skill** directly with this plan
 > - Or refine specific slides further"
 
 ## Principles

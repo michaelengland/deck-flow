@@ -1,6 +1,6 @@
 ---
 name: narrative
-description: "Use BEFORE creating any presentation. Explores audience, purpose, and story arc through sequential questioning. Produces a validated narrative document. Invoke with /deck-flow:narrative or when user wants to brainstorm a presentation."
+description: "This skill should be used when the user asks to brainstorm a presentation, develop a story for slides, plan a talk, or invoke /deck-flow:narrative. Use BEFORE creating any slides. Explores audience, purpose, and story arc through sequential questioning. Produces a validated narrative document."
 ---
 
 # Narrative
@@ -27,6 +27,7 @@ Ask ONE question at a time. Favor multiple-choice when possible.
 3. **Key message**: If they remember only ONE thing, what should it be?
 4. **Constraints**: Time limit? Slide count? Existing template or brand guidelines?
 5. **Content**: What evidence, data, or examples support the message?
+6. **Sources**: What source materials, documents, reports, or data back up the claims?
 
 Stop questioning when you have enough clarity to propose a narrative arc.
 
@@ -34,7 +35,7 @@ Stop questioning when you have enough clarity to propose a narrative arc.
 
 Present 2-3 narrative frameworks that fit the content. Lead with your recommendation.
 
-**For detailed framework guidance**, read `references/narrative-frameworks.md` in this plugin.
+**For detailed framework guidance**, read `${CLAUDE_PLUGIN_ROOT}/references/narrative-frameworks.md`.
 
 **Quick reference:**
 
@@ -60,7 +61,19 @@ Once the framework is chosen, present the narrative in **200-300 word sections**
 After each section, pause for validation:
 > "Does this capture what you're going for? Anything to adjust?"
 
-### 5. Document the Narrative
+### 5. Track Source References
+
+Throughout the narrative process, track all source materials the user provides or references. These are critical for the downstream craft and present phases.
+
+For every claim, data point, or key argument in the narrative, note the source:
+- Documents, reports, or files the user shared
+- URLs, articles, or external references mentioned
+- Internal data, metrics, or research cited
+- Quotes or attributions
+
+Include these in the narrative document so they carry forward into slide creation.
+
+### 6. Document the Narrative
 
 Save the validated narrative to: `docs/plans/YYYY-MM-DD-<topic>-narrative.md`
 
@@ -68,6 +81,8 @@ Save the validated narrative to: `docs/plans/YYYY-MM-DD-<topic>-narrative.md`
 
 ```markdown
 # [Presentation Title] - Narrative
+
+> **Next step:** Use **/deck-flow:craft** to translate this narrative into a slide-by-slide plan.
 
 ## Overview
 - **Audience**: [who]
@@ -89,6 +104,11 @@ Save the validated narrative to: `docs/plans/YYYY-MM-DD-<topic>-narrative.md`
 ### Conclusion
 [Summary and call-to-action]
 
+## Source References
+- [Source 1]: [description — e.g., "Q3 Revenue Report, pg 12"]
+- [Source 2]: [description — e.g., "Customer survey results, June 2025"]
+- [Source 3]: [description]
+
 ## Notes
 [Any constraints, open questions, or considerations for slide design]
 ```
@@ -97,7 +117,7 @@ Save the validated narrative to: `docs/plans/YYYY-MM-DD-<topic>-narrative.md`
 
 After narrative approval, offer next steps:
 
-> "Your narrative is ready. Next steps:
+> "Your narrative is ready. Next step:
 > - Use **/deck-flow:craft** to plan specific slides and layouts
 > - Or refine this narrative further"
 
@@ -108,3 +128,4 @@ After narrative approval, offer next steps:
 - **Ruthless focus** - Cut anything that doesn't serve the key message (YAGNI for presentations)
 - **Validate incrementally** - Check understanding after each section
 - **Stay flexible** - Revisit earlier decisions if new information emerges
+- **Cite sources** - Every claim should trace back to a source; this ensures credibility and makes downstream slide creation easier

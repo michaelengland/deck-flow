@@ -1,6 +1,6 @@
 ---
 name: present
-description: "Use AFTER /deck-flow:craft to generate the actual PowerPoint. Executes the deck plan using the pptx skill. Invoke with /deck-flow:present when user has an approved deck plan and wants to create the .pptx file."
+description: "This skill should be used when the user asks to generate a PowerPoint, create slides from a plan, build a .pptx file, or invoke /deck-flow:present. Use AFTER /deck-flow:craft. Executes a deck plan to produce the actual .pptx file using the pptx skill."
 ---
 
 # Present
@@ -10,9 +10,29 @@ Execute a deck plan to generate the actual PowerPoint presentation.
 ## Prerequisites
 
 - A deck plan exists (from **/deck-flow:craft**), OR user provides a clear slide-by-slide outline
-- The **pptx skill** must be available (it's bundled with Cowork/Claude Code)
+- The **pptx skill** must be available (see "Installing the PPTX Skill" below)
 
 If no plan exists: "Would you like to use **/deck-flow:craft** first to plan your slides?"
+
+## Installing the PPTX Skill
+
+The pptx skill is provided by the **document-skills** plugin from the **anthropic-agent-skills** marketplace. If it is not already installed:
+
+1. Install the marketplace plugin registry:
+   ```
+   claude plugin add anthropic/agent-skills
+   ```
+2. Install the document-skills plugin (which includes the pptx skill):
+   ```
+   claude plugin add anthropic/agent-skills:document-skills
+   ```
+
+If the pptx skill is not available and cannot be installed, inform the user:
+> "The pptx skill is required to generate slides but isn't available in this environment. Install it with:
+> 1. `claude plugin add anthropic/agent-skills` (marketplace registry)
+> 2. `claude plugin add anthropic/agent-skills:document-skills` (pptx skill)
+>
+> Alternatively, use the deck plan document with another presentation tool."
 
 ## Process
 
@@ -22,17 +42,13 @@ Read the deck plan document. Extract:
 - Total slide count
 - Each slide's layout, content, and speaker notes
 - Visual requirements (colors, imagery style, brand)
+- Source references (carry these forward for citation slides or footnotes)
 
 ### 2. Invoke the PPTX Skill
 
-**MANDATORY**: Before generating any slides, read the pptx skill's SKILL.md completely.
+**MANDATORY**: Before generating any slides, read the pptx skill's SKILL.md completely. Search for a file named `SKILL.md` inside a `pptx` skill directory within the installed plugins.
 
-**How to access the pptx skill:**
-- In Cowork: The skill is at `/mnt/.skills/skills/pptx/SKILL.md`
-- Read the full file — it contains critical guidance on html2pptx workflow, color palettes, and validation
-
-If the pptx skill is not available, inform the user:
-> "The pptx skill is required to generate slides but isn't available in this environment. You can use the deck plan with another tool, or ask to enable the pptx skill."
+Read the full file — it contains critical guidance on the html2pptx workflow, color palettes, and validation.
 
 ### 3. Design Decisions
 
@@ -85,10 +101,20 @@ Provide the final .pptx file with a summary:
 | Single message | Large centered text |
 | Bullet list | Left-aligned text with spacing |
 | Two-column | 50/50 or 40/60 split |
+| Three-column | Three equal sections |
 | Full-bleed image | Image covers slide, text overlay |
+| Image + text | Image 60-70%, text beside or below |
+| Image grid | 2-4 images in grid with optional labels |
 | Single chart | Chart centered, headline above |
+| Chart + interpretation | Chart 60%, bullets 40% beside it |
+| Comparison table | 2-4 columns, 3-5 rows, highlight differences |
 | Big number | Oversized number with context label |
 | Quote | Centered italic text, attribution below |
+| Timeline | Horizontal flow with milestones |
+| Steps | Numbered steps, left-to-right or top-to-bottom |
+| Summary | 3-5 key takeaways |
+| Call to action | One clear next step, contact info |
+| Q&A | "Questions?" with optional contact info |
 
 ## Principles
 
