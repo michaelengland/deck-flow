@@ -51,12 +51,17 @@ It includes guidance on slide count based on presentation length and validates t
 Takes your deck plan and produces the actual `.pptx` file. This skill:
 
 1. Loads your deck plan
-2. Proposes design decisions (color palette, typography, visual style) for approval
-3. Generates slides using the pptx skill
-4. Validates the output visually via thumbnail grid
-5. Delivers the final file
+2. Researches visual design excellence — reads bundled design principles (benchmarks from Apple keynotes, TED, Airbnb's pitch deck) and searches the web for inspiration relevant to your topic
+3. Proposes design decisions (color palette, typography, visual style, layout rhythm) for approval
+4. Generates slides using the pptx skill
+5. Validates every slide against a concrete checklist (3-second rule, whitespace %, word count, etc.)
+6. Delivers the final file
 
-**Requires:** The pptx skill (bundled with Cowork/Claude Code).
+**Requires:** The pptx skill from the `document-skills` plugin. Install with:
+```bash
+claude plugin add anthropic/agent-skills
+claude plugin add anthropic/agent-skills:document-skills
+```
 
 ## Typical Workflow
 

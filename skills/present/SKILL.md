@@ -44,26 +44,46 @@ Read the deck plan document. Extract:
 - Visual requirements (colors, imagery style, brand)
 - Source references (carry these forward for citation slides or footnotes)
 
-### 2. Invoke the PPTX Skill
+### 2. Research Visual Design Excellence
+
+**MANDATORY before any design decisions.** This step prevents generic, template-looking output.
+
+1. Read `${CLAUDE_PLUGIN_ROOT}/references/visual-design-principles.md` — it contains concrete benchmarks, anti-patterns, and a per-slide checklist drawn from Apple keynotes, TED talks, Airbnb's pitch deck, and peer-reviewed research.
+2. Search the web for visual inspiration relevant to the specific presentation topic and audience. Look for:
+   - Best-in-class decks in the user's industry or presentation type
+   - Current design trends (typography, color, layout) for the target context
+   - Specific examples of how top presenters handle the content type (e.g., data-heavy, narrative, pitch)
+3. Synthesize findings into a concrete design direction before proposing anything.
+
+**Key benchmarks to internalize (from reference):**
+- 30 words max per slide, 3-second comprehension test
+- 40%+ whitespace on every slide, 60-80% on hero slides
+- 60-30-10 color rule: dominant / secondary / accent
+- 1-2 fonts max, headline-to-body ratio of at least 1.5:1
+- No cards/boxes as containers — use whitespace and alignment instead
+- Vary layout rhythm: never the same layout 3 slides in a row
+
+### 3. Invoke the PPTX Skill
 
 **MANDATORY**: Before generating any slides, read the pptx skill's SKILL.md completely. Search for a file named `SKILL.md` inside a `pptx` skill directory within the installed plugins.
 
 Read the full file — it contains critical guidance on the html2pptx workflow, color palettes, and validation.
 
-### 3. Design Decisions
+### 4. Design Decisions
 
-Before generating, state your design approach:
+Before generating, state your design approach informed by the research:
 
-> "Based on your deck plan, I'll create this presentation with:
-> - **Color palette**: [chosen palette with hex codes]
-> - **Typography**: [font choices — use web-safe fonts only]
-> - **Visual style**: [e.g., minimal, bold, corporate]
+> "Based on your deck plan and visual research, I'll create this presentation with:
+> - **Color palette**: [chosen palette with hex codes — following 60-30-10 rule]
+> - **Typography**: [font choices + size scale — use web-safe fonts only]
+> - **Visual style**: [e.g., minimal with generous whitespace, inspired by X]
+> - **Layout rhythm**: [how layouts will vary across the deck]
 >
 > Does this direction work?"
 
 Get approval before writing any code.
 
-### 4. Generate Slides
+### 5. Generate Slides
 
 Follow the pptx skill's workflow (summarized here, but always defer to the skill's full instructions):
 
@@ -72,17 +92,21 @@ Follow the pptx skill's workflow (summarized here, but always defer to the skill
 3. Generate the presentation
 4. Create thumbnail grid for visual validation
 
-### 5. Visual Validation
+### 6. Visual Validation
 
-Review the thumbnail grid. Check for:
-- Text cutoff or overflow
-- Positioning issues
-- Color contrast problems
-- Layout consistency
+Review the thumbnail grid. For each slide, run the checklist from the visual design principles reference:
+- Can it be understood in under 3 seconds?
+- Is there only ONE main idea?
+- Is 40%+ of the slide whitespace?
+- Are there 30 or fewer words?
+- Does the headline state a takeaway (not a topic)?
+- Is color used for meaning, not decoration?
+- No cards/boxes used as containers?
+- Text cutoff, overflow, or contrast issues?
 
 If issues found, fix and regenerate. Repeat until all slides pass.
 
-### 6. Deliver
+### 7. Deliver
 
 Provide the final .pptx file with a summary:
 
