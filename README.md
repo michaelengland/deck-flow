@@ -2,6 +2,8 @@
 
 A Claude Code plugin that guides you through building presentations in four phases: **narrative**, **craft**, **design**, and **present**. Instead of jumping straight into slides, deck-flow separates what to say, how to structure it, how it should look, and how to build it.
 
+Already have a deck? Use **import** to reverse-engineer it into an editable generation script, then improve it through any phase.
+
 ## Requirements
 
 The narrative, craft, and design phases have no dependencies. The present phase (PPTX generation) requires:
@@ -10,7 +12,7 @@ The narrative, craft, and design phases have no dependencies. The present phase 
 - **Python** — creates thumbnail grids for visual validation
 - **Microsoft PowerPoint** or **LibreOffice** — converts .pptx to images for validation
 
-npm and pip packages are installed automatically during generation.
+npm and pip packages are installed automatically during generation and import.
 
 ## Installation
 
@@ -22,9 +24,22 @@ claude plugin add michaelengland/deck-flow
 
 ## Skills
 
+### `/deck-flow:import` — Import an existing presentation
+
+Start here when editing an existing deck. This skill takes a `.pptx` file and reverse-engineers it into an editable PptxGenJS generation script:
+
+1. Parses all slides — text, shapes, images, tables, charts, speaker notes
+2. Produces a generation script (`generate-deck.js`) with one function per slide
+3. Extracts embedded images to an `assets/` directory
+4. Validates the import by regenerating and comparing visually
+
+After import, you can edit the deck directly or enter any phase of the workflow to make targeted improvements.
+
+**Output:** A generation script (`generate-deck.js`) and extracted images (`assets/`).
+
 ### `/deck-flow:narrative` — Develop your story
 
-Start here. This skill helps you figure out *what to say* before thinking about slides. Through a guided conversation, it explores:
+Start here for new presentations. This skill helps you figure out *what to say* before thinking about slides. Through a guided conversation, it explores:
 
 - **Audience** — Who's watching and what do they care about?
 - **Purpose** — What should the audience think, feel, or do afterward?
@@ -75,12 +90,26 @@ Executes your slide design to produce the actual `.pptx` file:
 
 ## Typical Workflow
 
+### New Presentation
+
 ```
 /deck-flow:narrative → /deck-flow:craft → /deck-flow:design → /deck-flow:present
     (story)              (content)           (design)            (slides)
 ```
 
 Each phase produces a document you can review and revise before moving to the next.
+
+### Editing an Existing Deck
+
+```
+/deck-flow:import → choose your starting point → /deck-flow:present
+                     ├─ /deck-flow:narrative (rethink the story)
+                     ├─ /deck-flow:craft (restructure content)
+                     ├─ /deck-flow:design (redesign visuals)
+                     └─ direct edits (tell Claude what to change)
+```
+
+You don't need to go through all phases. Edit at whatever level makes sense — the generation script carries your changes through to the final output.
 
 ## License
 

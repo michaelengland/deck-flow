@@ -9,11 +9,26 @@ Execute a slide design document to generate the final PowerPoint file. This skil
 
 ## Prerequisites
 
-- A slide design document exists (from **/deck-flow:design**), OR user provides a complete slide-by-slide spec with visual direction
+- A slide design document exists (from **/deck-flow:design**), OR
+- User provides a complete slide-by-slide spec with visual direction, OR
+- A generation script (`generate-deck.js`) exists from a previous import or creation (edit mode)
 
-If no design exists: "Would you like to use **/deck-flow:design** first to plan your slides and visual direction?"
+If no design or generation script exists: "Would you like to use **/deck-flow:design** first to plan your slides and visual direction?"
 
 ## Process
+
+### Edit Mode Check
+
+Before starting, check: does a `generate-deck.js` file exist in the working directory?
+
+- **If no**: This is a new presentation. Follow the standard process below.
+- **If yes**: This is an edit. Read the existing generation script and modify only the affected slide functions based on user instructions or upstream design documents. Do not rewrite unchanged slides. Specifically:
+  1. Read `generate-deck.js` to understand the current slide functions
+  2. Identify which slides need changes (from user request or updated design doc)
+  3. Modify only those `createSlideN` functions — preserve everything else verbatim
+  4. If adding slides, create new functions and insert their calls at the right position
+  5. If removing slides, delete the function and its call
+  6. After modifications, continue to step 3 (Visual Validation) as usual
 
 ### 1. Load the Slide Design
 

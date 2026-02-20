@@ -9,11 +9,30 @@ Turn a content outline into a complete slide design — deciding how many slides
 
 ## Prerequisites
 
-- A content outline exists (from **/deck-flow:craft**), OR user provides a clear structured outline
+- A content outline exists (from **/deck-flow:craft**), OR
+- User provides a clear structured outline, OR
+- A generation script (`generate-deck.js`) exists from a previous import (edit mode)
 
-If no outline exists: "Would you like to use **/deck-flow:craft** first to structure your content?"
+If no outline or generation script exists: "Would you like to use **/deck-flow:craft** first to structure your content?"
 
 ## Process
+
+### Edit Mode Check
+
+Before starting, check: does a `generate-deck.js` file exist in the working directory?
+
+- **If no**: Follow the standard process below.
+- **If yes**: This is an edit. Read the generation script to understand the current deck, then:
+  1. Extract the current visual direction — collect all hex colors used (with frequency), fonts, size scales, and layout patterns across slides
+  2. Summarize the current design back to the user:
+     > "Here's the current visual direction I see:
+     > - **Colors**: [extracted palette]
+     > - **Typography**: [fonts and sizes in use]
+     > - **Layouts**: [summary of patterns]
+     >
+     > What would you like to change?"
+  3. Based on user input, produce or update a slide design document — explicitly note which slides are "keep as-is" vs. "modify" vs. "rebuild"
+  4. Continue to step 5 (Document the Slide Design) to save the updated design
 
 ### 1. Load the Content Outline
 

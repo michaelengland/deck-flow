@@ -9,6 +9,23 @@ Develop the story and message before thinking about slides. This skill converts 
 
 ## Process
 
+### Edit Mode Check
+
+Before starting, check: does a `generate-deck.js` file exist in the working directory?
+
+- **If no**: This is a new presentation. Follow the standard process below.
+- **If yes**: This is an edit. Read the generation script to understand the current slides, then:
+  1. Summarize the narrative you see in the deck — audience, purpose, key message, and story arc as you interpret them from the slide content and speaker notes
+  2. Present this to the user as your interpretation:
+     > "Based on the current deck, here's the narrative I see:
+     > - **Audience**: [inferred]
+     > - **Key message**: [inferred]
+     > - **Arc**: [slide-by-slide summary of the story flow]
+     >
+     > What would you like to change about the story?"
+  3. Focus questioning only on what the user wants to change — skip settled topics
+  4. Produce a narrative document as usual, noting which parts are unchanged vs. reworked
+
 ### 1. Understand the Context
 
 Before asking questions, review any existing context:
