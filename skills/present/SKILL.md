@@ -76,6 +76,8 @@ Provide the final .pptx file with a summary:
 > - **PDF**: [filename.pdf]
 > - **Slides**: [N] slides
 >
+> The generation script is the source of truth — if you need changes, let me know and I'll update the script and regenerate. Edits made directly to the .pptx in PowerPoint will be overwritten on the next run.
+>
 > Any adjustments needed?"
 
 ## Principles
