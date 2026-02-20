@@ -2,6 +2,17 @@
 
 A Claude Code plugin that guides you through building presentations in four phases: **narrative**, **craft**, **design**, and **present**. Instead of jumping straight into slides, deck-flow separates what to say, how to structure it, how it should look, and how to build it.
 
+## Requirements
+
+The narrative, craft, and design phases have no dependencies. The present phase (PPTX generation) requires:
+
+- **Node.js** — runs PptxGenJS to generate .pptx files
+- **Python** — creates thumbnail grids for visual validation
+- **LibreOffice** — converts .pptx to PDF for thumbnail generation
+- **Poppler** — converts PDF pages to images (`pdftoppm`)
+
+npm and pip packages are installed automatically as needed during generation.
+
 ## Installation
 
 Add this plugin to Claude Code:
