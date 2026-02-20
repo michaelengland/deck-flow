@@ -25,7 +25,7 @@ Ask ONE question at a time. Favor multiple-choice when possible.
 1. **Audience**: Who will see this? What do they already know? What do they care about?
 2. **Purpose**: What should the audience think, feel, or do after seeing this?
 3. **Key message**: If they remember only ONE thing, what should it be?
-4. **Constraints**: Time limit? Slide count? Existing template or brand guidelines?
+4. **Constraints**: Time limit? Existing template or brand guidelines?
 5. **Content**: What evidence, data, or examples support the message?
 6. **Sources**: What source materials, documents, reports, or data back up the claims?
 
@@ -110,7 +110,7 @@ Save the validated narrative to: `docs/plans/YYYY-MM-DD-<topic>-narrative.md`
 - [Source 3]: [description]
 
 ## Notes
-[Any constraints, open questions, or considerations for slide design]
+[Any constraints, open questions, or considerations for downstream phases]
 ```
 
 ## Handoff
