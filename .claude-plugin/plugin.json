@@ -1,6 +1,6 @@
 {
   "name": "deck-flow",
-  "description": "Presentation workflow plugin with three phases: narrative (brainstorm story), craft (structure content), and present (design + generate PPTX)",
+  "description": "Presentation workflow plugin with four phases: narrative (story), craft (content), design (slides + visual direction), and present (generate PPTX)",
   "author": {
     "name": "Michael",
     "email": "mg.england@gmail.com"

@@ -1,76 +1,28 @@
 ---
 name: present
-description: "This skill should be used when the user asks to generate a PowerPoint, create slides from an outline, build a .pptx file, or invoke /deck-flow:present. Use AFTER /deck-flow:craft. Turns a content outline into a designed and generated .pptx file."
+description: "This skill should be used when the user asks to generate the PowerPoint, build the .pptx file, render slides, or invoke /deck-flow:present. Use AFTER /deck-flow:design. Executes a slide design document to produce the final .pptx file."
 ---
 
 # Present
 
-Turn a content outline into a designed, visually excellent PowerPoint presentation. This skill handles all slide-level decisions: how many slides each section becomes, which layouts to use, visual design, and generation.
+Execute a slide design document to generate the final PowerPoint file. This skill takes the complete slide-by-slide spec (with layouts, content, and visual direction) and produces a validated .pptx.
 
 ## Prerequisites
 
-- A content outline exists (from **/deck-flow:craft**), OR user provides a clear structured outline
+- A slide design document exists (from **/deck-flow:design**), OR user provides a complete slide-by-slide spec with visual direction
 
-If no outline exists: "Would you like to use **/deck-flow:craft** first to structure your content?"
+If no design exists: "Would you like to use **/deck-flow:design** first to plan your slides and visual direction?"
 
 ## Process
 
-### 1. Load the Content Outline
+### 1. Load the Slide Design
 
-Read the content outline document. Extract:
-- Total section count and estimated duration
-- Each section's key message, content, emphasis level, and speaker notes
-- Source references (carry these forward for citation slides or footnotes)
-- Design notes (brand requirements, constraints)
+Read the slide design document. Extract:
+- Visual direction (color palette, typography, visual style)
+- Each slide's layout, content, and speaker notes
+- Source references (for citation slides or footnotes)
 
-### 2. Research Visual Design Excellence
-
-**MANDATORY before any design decisions.** This step prevents generic, template-looking output.
-
-1. Read `${CLAUDE_PLUGIN_ROOT}/references/visual-design-principles.md` — concrete benchmarks, anti-patterns, and a visual checklist drawn from Apple keynotes, TED talks, Airbnb's pitch deck, and peer-reviewed research.
-2. Read `${CLAUDE_PLUGIN_ROOT}/references/slide-patterns.md` — layout catalog with usage guidance for choosing the right layout per content type.
-3. Search the web for visual inspiration relevant to the specific presentation topic and audience. Look for:
-   - Best-in-class decks in the user's industry or presentation type
-   - Current design trends (typography, color, layout) for the target context
-   - Specific examples of how top presenters handle the content type (e.g., data-heavy, narrative, pitch)
-4. Synthesize findings into a concrete design direction before proposing anything.
-
-### 3. Plan Slides From Content Outline
-
-Translate each content section into specific slides. Use the section's emphasis level and the design research to decide:
-
-- **How many slides** each section becomes (high emphasis sections may need 2-4 slides; low emphasis may be a single divider or combined with adjacent content)
-- **Which layout** for each slide (refer to the slide-patterns reference for the layout catalog)
-- **Content per slide** — enforce: 30 words max, one idea per slide, headlines state the takeaway
-- **Layout rhythm** — never the same layout more than 3 slides in a row; alternate between high-density and low-density slides
-
-Present the slide plan to the user for approval:
-
-> "Based on your content outline and visual research, here's how I'd structure the slides:
->
-> - Section 1 (Opening) → 1 slide: Title slide
-> - Section 2 (Key insight, high emphasis) → 3 slides: Big number, Chart, Single message
-> - Section 3 (Context, medium) → 2 slides: Two-column, Bullet list
-> - ...
->
-> Total: [N] slides. Does this structure work?"
-
-Get approval before proceeding.
-
-### 4. Design Decisions
-
-Before generating, state your visual design approach informed by the research:
-
-> "I'll create this presentation with:
-> - **Color palette**: [chosen palette with hex codes — following 60-30-10 rule]
-> - **Typography**: [font choices + size scale — use web-safe fonts only]
-> - **Visual style**: [e.g., minimal with generous whitespace, inspired by X]
->
-> Does this direction work?"
-
-Get approval before writing any code.
-
-### 5. Generate Slides
+### 2. Generate Slides
 
 **Before writing any generation code**, read `${CLAUDE_PLUGIN_ROOT}/references/pptx-generation.md` — it contains the complete PptxGenJS API reference, critical pitfalls that cause file corruption, and the full generation workflow.
 
@@ -87,7 +39,7 @@ Get approval before writing any code.
 - Use `breakLine: true` between text array items for multi-line text
 - Only use web-safe fonts: Arial, Helvetica, Verdana, Georgia, Times New Roman, Courier New
 
-### 6. Visual Validation
+### 3. Visual Validation
 
 Review the thumbnail grid. For each slide check:
 - Is 40%+ of the slide whitespace?
@@ -100,7 +52,7 @@ Review the thumbnail grid. For each slide check:
 
 If issues found, fix and regenerate. Repeat until all slides pass.
 
-### 7. Deliver
+### 4. Deliver
 
 Provide the final .pptx file with a summary:
 
@@ -110,16 +62,8 @@ Provide the final .pptx file with a summary:
 >
 > Any adjustments needed?"
 
-## Slide Content Constraints
-
-Apply these to every slide during the planning step:
-
-- **30 words max per slide** — Move detail to speaker notes or split into additional slides
-- **One idea per slide** — If a slide needs "and", split it
-- **Headlines state the takeaway** — "Revenue grew 40%" not "Q3 Revenue Data"
-- **Prefer visuals over text** — If a point can be a number, chart, or image instead of bullets, use that
-
 ## Principles
 
-- **Follow the outline** — The content outline defines what to communicate; the slide plan defines how
+- **Follow the design** — The slide design document is the spec; don't deviate without approval
 - **Validate visually** — Always review thumbnails before delivery
+- **Fix and regenerate** — If validation fails, fix the code and regenerate rather than declaring "good enough"

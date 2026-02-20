@@ -72,7 +72,7 @@ Save the validated outline to: `docs/plans/YYYY-MM-DD-<topic>-content-outline.md
 ```markdown
 # [Presentation Title] - Content Outline
 
-> **Next step:** Use **/deck-flow:present** to design and generate the actual PowerPoint.
+> **Next step:** Use **/deck-flow:design** to plan slides and visual direction.
 
 ## Overview
 - **Estimated duration**: [X minutes]
@@ -111,7 +111,7 @@ Save the validated outline to: `docs/plans/YYYY-MM-DD-<topic>-content-outline.md
 After outline approval, offer next steps:
 
 > "Your content outline is ready. Next step:
-> - Use **/deck-flow:present** to design and generate the actual PowerPoint
+> - Use **/deck-flow:design** to plan slides and visual direction
 > - Or refine the outline further"
 
 ## Content Principles

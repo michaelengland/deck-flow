@@ -1,6 +1,6 @@
 # deck-flow
 
-A Claude Code plugin that guides you through building presentations in three phases: **narrative**, **craft**, and **present**. Instead of jumping straight into slides, deck-flow helps you develop your story first, structure your content second, and design + generate the PowerPoint last.
+A Claude Code plugin that guides you through building presentations in four phases: **narrative**, **craft**, **design**, and **present**. Instead of jumping straight into slides, deck-flow separates what to say, how to structure it, how it should look, and how to build it.
 
 ## Installation
 
@@ -35,34 +35,39 @@ It recommends from five proven narrative frameworks:
 
 ### `/deck-flow:craft` — Structure your content
 
-Once your narrative is solid, this skill organizes it into logical sections — without locking in specific slide counts or layouts. For each section it specifies:
+Organizes your narrative into logical sections — without locking in slide counts or layouts. For each section it specifies:
 
 - Key message (the takeaway)
 - Supporting content and evidence
 - Emphasis level (high / medium / low)
 - Speaker notes and transitions
 
-Slide-level decisions (how many slides per section, which layouts) are deliberately deferred to the present phase, where visual design research informs those choices.
-
 **Output:** A content outline saved to `docs/plans/`.
 
-### `/deck-flow:present` — Design and generate the PowerPoint
+### `/deck-flow:design` — Plan slides and visual direction
 
-Takes your content outline and produces the actual `.pptx` file. This skill:
+Turns your content outline into a complete slide design. This skill:
 
-1. Loads your content outline
-2. Researches visual design excellence — reads bundled design principles (benchmarks from Apple keynotes, TED, Airbnb's pitch deck) and searches the web for inspiration relevant to your topic
-3. Plans slides from the outline — decides how many slides each section needs and which layouts to use, based on emphasis levels and design research
-4. Proposes the slide plan and visual design (color palette, typography, visual style) for approval
-5. Generates slides using PptxGenJS (bundled workflow — no external plugins required)
-6. Validates every slide against a concrete checklist (3-second rule, whitespace %, word count, etc.)
-7. Delivers the final file
+1. Researches visual design excellence — reads bundled design principles and searches the web for inspiration relevant to your topic
+2. Plans how content sections become slides — decides slide count, layouts, and rhythm based on emphasis levels
+3. Proposes the visual direction (color palette, typography, style) for approval
+
+**Output:** A slide design document saved to `docs/plans/`.
+
+### `/deck-flow:present` — Generate the PowerPoint
+
+Executes your slide design to produce the actual `.pptx` file:
+
+1. Generates slides using PptxGenJS
+2. Validates every slide against a visual checklist (whitespace, contrast, anti-patterns)
+3. Fixes and regenerates until all slides pass
+4. Delivers the final file
 
 ## Typical Workflow
 
 ```
-/deck-flow:narrative  →  /deck-flow:craft  →  /deck-flow:present
-    (story)               (content)             (design + slides)
+/deck-flow:narrative → /deck-flow:craft → /deck-flow:design → /deck-flow:present
+    (story)              (content)           (design)            (slides)
 ```
 
 Each phase produces a document you can review and revise before moving to the next.
