@@ -55,13 +55,13 @@ Read the deck plan document. Extract:
    - Specific examples of how top presenters handle the content type (e.g., data-heavy, narrative, pitch)
 3. Synthesize findings into a concrete design direction before proposing anything.
 
-**Key benchmarks to internalize (from reference):**
-- 30 words max per slide, 3-second comprehension test
+**Key visual benchmarks (from reference):**
 - 40%+ whitespace on every slide, 60-80% on hero slides
 - 60-30-10 color rule: dominant / secondary / accent
-- 1-2 fonts max, headline-to-body ratio of at least 1.5:1
-- No cards/boxes as containers — use whitespace and alignment instead
-- Vary layout rhythm: never the same layout 3 slides in a row
+- 1-2 fonts max, headline-to-body ratio of at least 1.5:1 (golden section scale: 16/24/36/54/81pt)
+- No cards/boxes as containers — use whitespace and alignment to group
+- No decorative gradients, shadows, or icons — flat, clean, intentional
+- Asymmetry over symmetry — offset elements, use rule of thirds
 
 ### 3. Invoke the PPTX Skill
 
@@ -94,15 +94,14 @@ Follow the pptx skill's workflow (summarized here, but always defer to the skill
 
 ### 6. Visual Validation
 
-Review the thumbnail grid. For each slide, run the checklist from the visual design principles reference:
-- Can it be understood in under 3 seconds?
-- Is there only ONE main idea?
+Review the thumbnail grid. For each slide check:
 - Is 40%+ of the slide whitespace?
-- Are there 30 or fewer words?
-- Does the headline state a takeaway (not a topic)?
 - Is color used for meaning, not decoration?
 - No cards/boxes used as containers?
+- No decorative gradients, shadows, or icon grids?
+- Does it feel like a designed slide or a template? (If template — simplify)
 - Text cutoff, overflow, or contrast issues?
+- Can it be understood in under 3 seconds?
 
 If issues found, fix and regenerate. Repeat until all slides pass.
 

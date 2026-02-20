@@ -111,10 +111,21 @@ After plan approval, offer next steps:
 > - Use **/deck-flow:present** to generate the actual PowerPoint
 > - Or refine specific slides further"
 
-## Principles
+## Content Constraints
 
-- **One idea per slide** - If you need "and", consider splitting
-- **Headlines not titles** - Slide titles should state the takeaway, not the topic
-- **Visual hierarchy** - Most important thing should be biggest/boldest
-- **Consistent layouts** - Don't switch layouts randomly
-- **Speaker notes are essential** - The slide is a visual aid, not a script
+Apply these to every slide in the plan. If a slide violates any of these, restructure it before finalizing.
+
+- **One idea per slide** — If you need "and", split into two slides
+- **30 words max per slide** — If content exceeds this, move detail to speaker notes or split the slide
+- **Headlines state the takeaway** — "Revenue grew 40%" not "Q3 Revenue Data". The headline IS the point.
+- **Vary layout rhythm** — Never use the same layout more than 3 slides in a row. Alternate between high-density (data, bullets) and low-density (single message, image) slides.
+- **Prefer visuals over text** — If a point can be a number, chart, image, or comparison instead of a bullet list, use that instead
+- **Speaker notes carry the detail** — The slide is a visual aid, not a script. Dense explanation belongs in notes, not on the slide.
+
+### Handling Dense Content
+
+When a narrative point requires complex information:
+
+1. **Split progressively** — Break into 3-4 slides that build on each other
+2. **Lead with the insight** — First slide states the conclusion, following slides show the evidence
+3. **Use the appendix pattern** — Simple version on the slide, detail in a marked appendix section at the end

@@ -1,24 +1,12 @@
 # Visual Design Principles Reference
 
-Concrete, research-backed design principles for building visually exceptional presentations. Load this before making any design decisions in the present phase.
+Concrete, research-backed visual design principles for the present phase. This reference focuses on how slides look — typography, color, whitespace, imagery, and layout execution. Content constraints (word count, idea density, headline style, layout variation) are enforced during the craft phase.
 
 ## The Core Problem
 
-Most generated presentations look generic because they treat slides as documents — dense, uniform, and text-heavy. Exceptional decks treat slides as billboards: one idea, maximum impact, minimum clutter.
+Most generated presentations look generic because they use template patterns: cards/boxes around everything, decorative icons, uniform layouts, and symmetrical centering. Exceptional decks use whitespace, typography scale, and restraint as their primary design tools.
 
 ## Benchmarks From the Best
-
-### Text Density
-
-| Source | Words Per Slide | Approach |
-|--------|----------------|----------|
-| Apple keynotes (Steve Jobs era) | 3-7 words | "3-Second Rule" — audience should grasp the slide in 3 seconds |
-| TED official guidelines | 1 idea per slide | "Your slides are not your notes" |
-| Guy Kawasaki (10/20/30 rule) | ~30 words max | 30pt minimum font enforces brevity |
-| Airbnb original pitch deck | 15-25 words | One claim per slide, large type |
-| Sequoia pitch deck template | 10-30 words | Headline + 3-4 short bullets max |
-
-**Rule of thumb**: If a slide has more than 30 words, split it.
 
 ### Typography
 
@@ -135,26 +123,16 @@ These specific traits make a deck instantly look AI-generated or template-based:
 | Logo on every slide | Logo on title + closing only. |
 | Center everything | Left-align body text. Vary headline placement. |
 
-## Handling Complex Information
-
-When a slide genuinely needs to convey dense information:
-
-1. **Build it progressively** — Split into 3-4 slides that build on each other rather than one dense slide
-2. **Annotate, don't list** — Instead of a bullet list explaining a chart, annotate directly on the chart
-3. **Headline carries the insight** — The slide title should state the conclusion ("Revenue grew 40%"), not describe the content ("Q3 Revenue Data")
-4. **Use the appendix pattern** — Put the simple version on the slide, reference detailed data in an appendix or handout
-
-## Quick Checklist Before Generating Any Slide
+## Visual Checklist
 
 For every slide, verify:
 
-- [ ] Can it be understood in under 3 seconds?
-- [ ] Is there only ONE main idea?
 - [ ] Is 40%+ of the slide whitespace?
-- [ ] Are there 30 or fewer words?
-- [ ] Does the headline state a takeaway (not a topic)?
 - [ ] Is color used for meaning, not decoration?
-- [ ] Would removing any element break the meaning? (If not, remove it)
+- [ ] No cards/boxes as containers?
+- [ ] No decorative gradients, shadows, or icon grids?
+- [ ] Would removing any visual element break the meaning? (If not, remove it)
+- [ ] Does it feel designed or templated? (If templated — simplify)
 
 ## Sources
 
