@@ -97,10 +97,9 @@ Save the validated plan to: `docs/plans/YYYY-MM-DD-<topic>-deck-plan.md`
 
 [... continue for all slides ...]
 
-## Visual Notes
-- **Color palette**: [if specified]
-- **Imagery style**: [photos, icons, illustrations]
-- **Brand requirements**: [if any]
+## Design Notes
+- **Brand requirements**: [if any — logos, fonts, colors the user specified]
+- **Constraints**: [any visual preferences or restrictions mentioned during planning]
 ```
 
 ## Handoff

@@ -77,7 +77,6 @@ Before generating, state your design approach informed by the research:
 > - **Color palette**: [chosen palette with hex codes — following 60-30-10 rule]
 > - **Typography**: [font choices + size scale — use web-safe fonts only]
 > - **Visual style**: [e.g., minimal with generous whitespace, inspired by X]
-> - **Layout rhythm**: [how layouts will vary across the deck]
 >
 > Does this direction work?"
 
