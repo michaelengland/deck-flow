@@ -54,15 +54,9 @@ Takes your content outline and produces the actual `.pptx` file. This skill:
 2. Researches visual design excellence — reads bundled design principles (benchmarks from Apple keynotes, TED, Airbnb's pitch deck) and searches the web for inspiration relevant to your topic
 3. Plans slides from the outline — decides how many slides each section needs and which layouts to use, based on emphasis levels and design research
 4. Proposes the slide plan and visual design (color palette, typography, visual style) for approval
-5. Generates slides using the pptx skill
+5. Generates slides using PptxGenJS (bundled workflow — no external plugins required)
 6. Validates every slide against a concrete checklist (3-second rule, whitespace %, word count, etc.)
 7. Delivers the final file
-
-**Requires:** The pptx skill from the `document-skills` plugin. Install with:
-```bash
-claude plugin add anthropic/agent-skills
-claude plugin add anthropic/agent-skills:document-skills
-```
 
 ## Typical Workflow
 

@@ -10,29 +10,8 @@ Turn a content outline into a designed, visually excellent PowerPoint presentati
 ## Prerequisites
 
 - A content outline exists (from **/deck-flow:craft**), OR user provides a clear structured outline
-- The **pptx skill** must be available (see "Installing the PPTX Skill" below)
 
 If no outline exists: "Would you like to use **/deck-flow:craft** first to structure your content?"
-
-## Installing the PPTX Skill
-
-The pptx skill is provided by the **document-skills** plugin from the **anthropic-agent-skills** marketplace. If it is not already installed:
-
-1. Install the marketplace plugin registry:
-   ```
-   claude plugin add anthropic/agent-skills
-   ```
-2. Install the document-skills plugin (which includes the pptx skill):
-   ```
-   claude plugin add anthropic/agent-skills:document-skills
-   ```
-
-If the pptx skill is not available and cannot be installed, inform the user:
-> "The pptx skill is required to generate slides but isn't available in this environment. Install it with:
-> 1. `claude plugin add anthropic/agent-skills` (marketplace registry)
-> 2. `claude plugin add anthropic/agent-skills:document-skills` (pptx skill)
->
-> Alternatively, use the content outline with another presentation tool."
 
 ## Process
 
@@ -78,13 +57,7 @@ Present the slide plan to the user for approval:
 
 Get approval before proceeding.
 
-### 4. Invoke the PPTX Skill
-
-**MANDATORY**: Before generating any slides, read the pptx skill's SKILL.md completely. Search for a file named `SKILL.md` inside a `pptx` skill directory within the installed plugins.
-
-Read the full file — it contains critical guidance on the html2pptx workflow, color palettes, and validation.
-
-### 5. Design Decisions
+### 4. Design Decisions
 
 Before generating, state your visual design approach informed by the research:
 
@@ -97,16 +70,24 @@ Before generating, state your visual design approach informed by the research:
 
 Get approval before writing any code.
 
-### 6. Generate Slides
+### 5. Generate Slides
 
-Follow the pptx skill's workflow (summarized here, but always defer to the skill's full instructions):
+**Before writing any generation code**, read `${CLAUDE_PLUGIN_ROOT}/references/pptx-generation.md` — it contains the complete PptxGenJS API reference, critical pitfalls that cause file corruption, and the full generation workflow.
 
-1. Create HTML files for each slide (720pt × 405pt for 16:9)
-2. Create JavaScript file using html2pptx.js library
-3. Generate the presentation
-4. Create thumbnail grid for visual validation
+**Workflow:**
+1. Create a JavaScript file that builds the presentation using PptxGenJS (10" × 5.625" for 16:9)
+2. Run with `node` to generate the `.pptx`
+3. Convert to images for validation: `soffice --headless --convert-to pdf output.pptx` then `pdftoppm -jpeg -r 150 output.pdf slide`
+4. Create a thumbnail grid from the slide images
 
-### 7. Visual Validation
+**Critical reminders (from reference):**
+- NEVER use "#" in hex colors — causes file corruption
+- NEVER reuse option objects — PptxGenJS mutates them in-place
+- Use `bullet: true` for bullets, NEVER unicode symbols
+- Use `breakLine: true` between text array items for multi-line text
+- Only use web-safe fonts: Arial, Helvetica, Verdana, Georgia, Times New Roman, Courier New
+
+### 6. Visual Validation
 
 Review the thumbnail grid. For each slide check:
 - Is 40%+ of the slide whitespace?
@@ -119,7 +100,7 @@ Review the thumbnail grid. For each slide check:
 
 If issues found, fix and regenerate. Repeat until all slides pass.
 
-### 8. Deliver
+### 7. Deliver
 
 Provide the final .pptx file with a summary:
 
@@ -142,4 +123,3 @@ Apply these to every slide during the planning step:
 
 - **Follow the outline** — The content outline defines what to communicate; the slide plan defines how
 - **Validate visually** — Always review thumbnails before delivery
-- **Defer to pptx skill** — It has detailed, tested workflows for slide generation
