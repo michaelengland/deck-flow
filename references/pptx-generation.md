@@ -216,7 +216,7 @@ Try these approaches in order based on what's available.
 ### Option A: PowerPoint on macOS
 
 ```bash
-mkdir -p slides
+rm -rf slides && mkdir -p slides
 osascript -e '
   tell application "Microsoft PowerPoint"
     set pptxPath to POSIX file "'"$(pwd)/output.pptx"'"
@@ -232,7 +232,7 @@ This creates `output.pdf` and `slides/slide-01.png`, `slides/slide-02.png`, etc.
 ### Option B: LibreOffice + Poppler
 
 ```bash
-mkdir -p slides
+rm -rf slides && mkdir -p slides
 
 # Convert .pptx to PDF via LibreOffice
 soffice --headless --convert-to pdf output.pptx
