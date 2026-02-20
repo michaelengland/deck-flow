@@ -168,17 +168,14 @@ Common slide layouts and when to use them. Load this when planning specific slid
 | Process | Timeline or steps |
 | Visual example | Full-bleed or image+caption |
 
-## Common Mistakes
+## Common Layout Mistakes
 
 **Avoid:**
-- More than 5 bullets on one slide
-- Charts + bullets + images on same slide
-- Walls of text
-- Title that describes topic instead of takeaway
-- Inconsistent layouts throughout deck
+- Using "Bullet points" when a Big number or Single message would be stronger
+- Combining chart + bullets + image on one slide — pick one focus
+- Defaulting to Two-column for everything — match the layout to the content type
+- Using a Section divider when there's no actual section change
 
 **Instead:**
-- Split dense slides into multiple slides
-- One idea per slide
-- Headlines that state the point
-- Consistent visual rhythm
+- Check the Layout Selection Guide above and pick the layout that matches the content type
+- When in doubt, simplify — Single message or Big number over Bullet points

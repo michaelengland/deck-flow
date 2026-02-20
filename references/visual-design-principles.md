@@ -74,52 +74,40 @@ The single biggest differentiator between exceptional and generic decks.
 - Images as decoration rather than communication
 - Small images surrounded by text
 
-### Layout Variation
-
-Exceptional decks vary their visual rhythm deliberately:
-
-**Pattern**: Alternate between high-density and low-density slides.
-- After a data-heavy slide, follow with a single-message breather
-- After 2-3 content slides, insert a full-bleed image or section divider
-- Never use the same layout more than 3 slides in a row
+### Spatial Composition
 
 **Asymmetry over symmetry:**
 - Don't center everything — offset text to left/right with image on the other side
 - Use the rule of thirds: place key elements at intersection points
 - Leave one quadrant intentionally empty
+- Vary alignment across the deck — mix left-aligned, right-aligned, and centered slides
 
 ## Anti-Patterns: What Makes Decks Look Generic
 
 ### The "Template" Look
 
-These specific traits make a deck instantly look AI-generated or template-based:
+These specific visual traits make a deck instantly look AI-generated or template-based:
 
-1. **Cards/boxes on every slide** — Rounded-rectangle containers around every group of text. Real designers use whitespace and alignment to group content, not boxes.
+1. **Cards/boxes on every slide** — Rounded-rectangle containers around every group of text. Use whitespace and alignment to group content, not boxes.
 
-2. **Uniform layouts** — Every content slide has the same structure (title + 3 columns, title + bullets). Exceptional decks vary layout intentionally.
+2. **Too many visual elements per slide** — Title + subtitle + 3 icons + 3 headings + 3 descriptions + a footer. Reduce to 1-2 visual elements.
 
-3. **Too many elements per slide** — Title + subtitle + 3 icons + 3 headings + 3 descriptions + a footer. Reduce to 1-2 elements.
+3. **Decorative gradients and shadows** — Subtle drop shadows on every card, gradient backgrounds. Clean, flat design reads as more professional.
 
-4. **Decorative gradients and shadows** — Subtle drop shadows on every card, gradient backgrounds. Clean, flat design reads as more professional.
+4. **Icon overload** — A grid of icons with labels underneath. Icons should be functional (wayfinding, emphasis), not decorative filler.
 
-5. **Icon overload** — A grid of icons with labels underneath. Icons should be functional (wayfinding, emphasis), not decorative filler.
+5. **Logos and footers on every slide** — Brand bar on every slide is corporate-template energy. Use branding on title and closing slides only.
 
-6. **Bullet point lists on every slide** — Bullets are a last resort. Prefer: one statement, one number, one image, or a simple comparison.
-
-7. **Logos and footers on every slide** — Brand bar on every slide is corporate-template energy. Use branding on title and closing slides only.
-
-8. **Centered everything** — Center-aligned text on every slide creates visual monotony. Mix alignment strategies.
+6. **Centered everything** — Center-aligned text on every slide creates visual monotony. Mix alignment strategies.
 
 ### The Fix for Each
 
 | Anti-Pattern | Fix |
 |-------------|-----|
 | Cards/boxes everywhere | Remove containers. Use whitespace + alignment to group. |
-| Uniform layouts | Deliberately alternate: message → data → image → message |
-| Too many elements | Cut to 1-2 elements. Ask "what can I remove?" |
+| Too many visual elements | Cut to 1-2 elements. Ask "what can I remove?" |
 | Decorative gradients | Flat colors. If using gradients, one subtle one max. |
 | Icon overload | Remove icons. Use size/weight/color for hierarchy instead. |
-| Bullet lists | Convert to: single statement, comparison, big number, or visual |
 | Logo on every slide | Logo on title + closing only. |
 | Center everything | Left-align body text. Vary headline placement. |
 
