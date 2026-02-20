@@ -204,45 +204,54 @@ Only use fonts guaranteed to render correctly:
 
 ## Visual Validation
 
-After generating a .pptx, convert slides to images for visual review. Try these approaches in order based on what's available.
+After generating a .pptx, convert slides to images for visual review. Use these standardized output paths:
+
+- Slide images: `slides/slide-01.jpg`, `slides/slide-02.jpg`, etc.
+- Thumbnail grid: `slides/thumbnails.jpg`
+
+Try these approaches in order based on what's available.
 
 ### Option A: PowerPoint on macOS
 
+PowerPoint can export slides directly as PNG images, skipping PDF entirely:
+
 ```bash
-# Export to PDF via AppleScript
+mkdir -p slides
 osascript -e '
   tell application "Microsoft PowerPoint"
     open POSIX file "'"$(pwd)/output.pptx"'"
-    save active presentation in POSIX file "'"$(pwd)/output.pdf"'" as save as PDF
+    save active presentation in POSIX file "'"$(pwd)/slides/slide"'" as save as PNG
     close active presentation
   end tell'
-
-# Convert PDF pages to images using built-in sips or Preview
-# Or use qlmanage for Quick Look thumbnails:
-mkdir -p slides
-qlmanage -t -s 1920 -o slides output.pdf
 ```
+
+This creates `slides/slide-01.png`, `slides/slide-02.png`, etc.
 
 ### Option B: LibreOffice + Poppler
 
 ```bash
+mkdir -p slides
+
 # Convert .pptx to PDF via LibreOffice
-soffice --headless --convert-to pdf output.pptx
+soffice --headless --convert-to pdf --outdir slides output.pptx
 
 # Convert PDF pages to JPEG images
-pdftoppm -jpeg -r 150 output.pdf slide
-# Creates slide-01.jpg, slide-02.jpg, etc.
+pdftoppm -jpeg -r 150 slides/output.pdf slides/slide
+# Creates slides/slide-01.jpg, slides/slide-02.jpg, etc.
+
+# Clean up intermediate PDF
+rm slides/output.pdf
 ```
 
 ### Creating the thumbnail grid
 
-Once slide images exist (from either option), create a grid:
+Once slide images exist (from either option), create the grid:
 
 ```python
 from PIL import Image
 import glob, math
 
-images = sorted(glob.glob("slide-*.jpg"))
+images = sorted(glob.glob("slides/slide-*.*"))
 cols = 3
 rows = math.ceil(len(images) / cols)
 
@@ -253,7 +262,7 @@ grid = Image.new("RGB", (tw * cols, th * rows), "white")
 for i, thumb in enumerate(thumbs):
     grid.paste(thumb, ((i % cols) * tw, (i // cols) * th))
 
-grid.save("thumbnails.jpg")
+grid.save("slides/thumbnails.jpg")
 ```
 
 ### If no conversion tools are available
