@@ -1,6 +1,6 @@
 ---
 name: import
-description: "This skill should be used when the user wants to edit, modify, or improve an existing PowerPoint presentation, import a .pptx for editing, or invoke /deck-flow:import. Reverse-engineers a .pptx into a PptxGenJS generation script that can be edited and regenerated."
+description: "This skill should be used when the user wants to import an existing .pptx file into deck-flow, bring in a PowerPoint that was created outside this tool, reverse-engineer a presentation for editing, or invoke /deck-flow:import. Converts a .pptx into a PptxGenJS generation script so it can be edited and regenerated through the deck-flow pipeline."
 ---
 
 # Import
@@ -82,7 +82,7 @@ Present a clear summary to the user:
 >
 > These are inherent limitations of the import — they cannot be fixed automatically. You can adjust them manually in the generation script if needed."
 
-### 7. Hand Off
+### 7. Handoff
 
 The generation script is now the source of truth for the deck. Present the user's options:
 
