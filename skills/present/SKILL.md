@@ -29,7 +29,7 @@ Read the slide design document. Extract:
 **Workflow:**
 1. Create a JavaScript file that builds the presentation using PptxGenJS (10" × 5.625" for 16:9)
 2. Run with `node` to generate the `.pptx`
-3. Convert to images for validation: `soffice --headless --convert-to pdf output.pptx` then `pdftoppm -jpeg -r 150 output.pdf slide`
+3. Convert to slide images for validation (see "Visual Validation" in the reference for multiple approaches depending on whether PowerPoint or LibreOffice is available)
 4. Create a thumbnail grid from the slide images
 
 **Critical reminders (from reference):**

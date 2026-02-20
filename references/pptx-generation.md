@@ -4,13 +4,19 @@ How to generate PowerPoint presentations using PptxGenJS. Read this before writi
 
 ## Dependencies
 
+**Required:**
 ```bash
 npm install pptxgenjs
-npm install react-icons react react-dom  # For icons
-npm install sharp                         # For SVG rasterization
-pip install Pillow                        # For thumbnail grids
-# System: LibreOffice (soffice), Poppler (pdftoppm)
 ```
+
+**For icons (optional):**
+```bash
+npm install react-icons react react-dom sharp
+```
+
+**For visual validation**, one of:
+- **Microsoft PowerPoint** (macOS) — export to PDF via AppleScript
+- **LibreOffice** + **Poppler** — `soffice` converts to PDF, `pdftoppm` converts to images
 
 ## Quick Start
 
@@ -196,11 +202,28 @@ Only use fonts guaranteed to render correctly:
 - Trebuchet MS
 - Impact
 
-## Thumbnail Generation for Visual Validation
+## Visual Validation
 
-After generating a .pptx, create a visual thumbnail grid to review all slides at a glance.
+After generating a .pptx, convert slides to images for visual review. Try these approaches in order based on what's available.
 
-**Step 1: Convert to images**
+### Option A: PowerPoint on macOS
+
+```bash
+# Export to PDF via AppleScript
+osascript -e '
+  tell application "Microsoft PowerPoint"
+    open POSIX file "'"$(pwd)/output.pptx"'"
+    save active presentation in POSIX file "'"$(pwd)/output.pdf"'" as save as PDF
+    close active presentation
+  end tell'
+
+# Convert PDF pages to images using built-in sips or Preview
+# Or use qlmanage for Quick Look thumbnails:
+mkdir -p slides
+qlmanage -t -s 1920 -o slides output.pdf
+```
+
+### Option B: LibreOffice + Poppler
 
 ```bash
 # Convert .pptx to PDF via LibreOffice
@@ -211,7 +234,9 @@ pdftoppm -jpeg -r 150 output.pdf slide
 # Creates slide-01.jpg, slide-02.jpg, etc.
 ```
 
-**Step 2: Create thumbnail grid (Python)**
+### Creating the thumbnail grid
+
+Once slide images exist (from either option), create a grid:
 
 ```python
 from PIL import Image
@@ -231,7 +256,9 @@ for i, thumb in enumerate(thumbs):
 grid.save("thumbnails.jpg")
 ```
 
-**Step 3: Review the thumbnail grid** — check for text cutoff, color issues, layout problems, and visual rhythm. Fix and regenerate if needed.
+### If no conversion tools are available
+
+Deliver the .pptx and ask the user to open it and provide feedback. Skip automated visual validation.
 
 ## Workflow Summary
 
