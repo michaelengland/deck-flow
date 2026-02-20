@@ -36,25 +36,53 @@ Read `${CLAUDE_PLUGIN_ROOT}/references/pptx-import.md` for the full import workf
    ```
 3. Check the exit code. If non-zero, read stderr and diagnose the issue.
 
-### 4. Validate the Import
+### 4. Generate Thumbnails from the Original
+
+Before running the generated script, convert the **original** `.pptx` to slide images so you have a baseline for comparison. Use the validation workflow from `${CLAUDE_PLUGIN_ROOT}/references/pptx-generation.md` (PDF Export and Visual Validation section), saving output to `decks/<name>/original/`:
+
+```
+decks/<name>/original/
+  slides/slide-01.jpg, slide-02.jpg, ...
+  slides/thumbnails.jpg
+```
+
+### 5. Validate and Fix (Loop)
+
+This step mirrors the present skill's validation loop — regenerate, compare, fix, repeat.
 
 1. Install PptxGenJS if needed: `npm install pptxgenjs`
 2. Run the generated script from the deck folder: `cd decks/<name> && node <name>.js`
-3. Verify it produces `<name>.pptx` in the deck folder
-4. Convert to slide images and create a thumbnail grid using the same validation workflow from `${CLAUDE_PLUGIN_ROOT}/references/pptx-generation.md` (PDF Export and Visual Validation section) — all output goes into the deck folder
-5. Show the thumbnail grid to the user and ask:
-   > "Here's the imported version of your deck. Does it look correct? Any noticeable differences from the original?"
+3. Convert the regenerated `.pptx` to slide images and a thumbnail grid (same validation workflow, output to the deck folder's `slides/` directory as usual)
+4. Compare slide-by-slide against the original thumbnails. For each slide, check:
+   - Is the text content and positioning correct?
+   - Are colors and fonts right?
+   - Are images present and correctly placed?
+   - Are shapes (backgrounds, dividers, accent bars) reproduced?
+   - Is the overall layout and whitespace faithful?
+5. **If fixable differences exist** — edit the generation script to correct them and regenerate. Common fixes:
+   - Adjust `x`/`y`/`w`/`h` values for positioning
+   - Fix font sizes or colors
+   - Add missing shapes or backgrounds
+   - Correct text content or formatting
+6. **Repeat** until the regenerated slides match the original as closely as possible.
 
-### 5. Review Warnings
+### 6. Document Remaining Differences
 
-Read through the generated `.js` file for any `// WARNING:` comments. Summarize these for the user:
+Once you've fixed everything you can, catalogue what remains. Read the `// WARNING:` comments in the generation script and compare them with any visual differences you can still see.
 
-> "The import completed with these notes:
-> - [list any warnings — font substitutions, gradient conversions, skipped elements]
+Present a clear summary to the user:
+
+> "Import complete. Here's the final comparison:
+> - **[N] slides match the original** — no visible differences
+> - **Remaining differences:**
+>   - Slide 3: Gradient background converted to solid `#1A1A2E` (PptxGenJS doesn't support gradients)
+>   - Slides 1, 5, 12: Font "Calibri" substituted with "Arial" (web-safe only)
+>   - Slide 8: SmartArt diagram simplified to basic shapes
+>   - [any other differences]
 >
-> These are cosmetic differences. Would you like to address any of them before proceeding?"
+> These are inherent limitations of the import — they cannot be fixed automatically. You can adjust them manually in the generation script if needed."
 
-### 6. Hand Off
+### 7. Hand Off
 
 The generation script is now the source of truth for the deck. Present the user's options:
 
