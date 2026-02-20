@@ -82,7 +82,7 @@ Save the validated narrative to: `docs/plans/YYYY-MM-DD-<topic>-narrative.md`
 ```markdown
 # [Presentation Title] - Narrative
 
-> **Next step:** Use **/deck-flow:craft** to translate this narrative into a slide-by-slide plan.
+> **Next step:** Use **/deck-flow:craft** to structure this narrative into a content outline.
 
 ## Overview
 - **Audience**: [who]
@@ -118,7 +118,7 @@ Save the validated narrative to: `docs/plans/YYYY-MM-DD-<topic>-narrative.md`
 After narrative approval, offer next steps:
 
 > "Your narrative is ready. Next step:
-> - Use **/deck-flow:craft** to plan specific slides and layouts
+> - Use **/deck-flow:craft** to structure this into a content outline
 > - Or refine this narrative further"
 
 ## Principles

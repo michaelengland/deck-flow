@@ -1,18 +1,18 @@
 ---
 name: present
-description: "This skill should be used when the user asks to generate a PowerPoint, create slides from a plan, build a .pptx file, or invoke /deck-flow:present. Use AFTER /deck-flow:craft. Executes a deck plan to produce the actual .pptx file using the pptx skill."
+description: "This skill should be used when the user asks to generate a PowerPoint, create slides from an outline, build a .pptx file, or invoke /deck-flow:present. Use AFTER /deck-flow:craft. Turns a content outline into a designed and generated .pptx file."
 ---
 
 # Present
 
-Execute a deck plan to generate the actual PowerPoint presentation.
+Turn a content outline into a designed, visually excellent PowerPoint presentation. This skill handles all slide-level decisions: how many slides each section becomes, which layouts to use, visual design, and generation.
 
 ## Prerequisites
 
-- A deck plan exists (from **/deck-flow:craft**), OR user provides a clear slide-by-slide outline
+- A content outline exists (from **/deck-flow:craft**), OR user provides a clear structured outline
 - The **pptx skill** must be available (see "Installing the PPTX Skill" below)
 
-If no plan exists: "Would you like to use **/deck-flow:craft** first to plan your slides?"
+If no outline exists: "Would you like to use **/deck-flow:craft** first to structure your content?"
 
 ## Installing the PPTX Skill
 
@@ -32,48 +32,63 @@ If the pptx skill is not available and cannot be installed, inform the user:
 > 1. `claude plugin add anthropic/agent-skills` (marketplace registry)
 > 2. `claude plugin add anthropic/agent-skills:document-skills` (pptx skill)
 >
-> Alternatively, use the deck plan document with another presentation tool."
+> Alternatively, use the content outline with another presentation tool."
 
 ## Process
 
-### 1. Load the Deck Plan
+### 1. Load the Content Outline
 
-Read the deck plan document. Extract:
-- Total slide count
-- Each slide's layout, content, and speaker notes
-- Visual requirements (colors, imagery style, brand)
+Read the content outline document. Extract:
+- Total section count and estimated duration
+- Each section's key message, content, emphasis level, and speaker notes
 - Source references (carry these forward for citation slides or footnotes)
+- Design notes (brand requirements, constraints)
 
 ### 2. Research Visual Design Excellence
 
 **MANDATORY before any design decisions.** This step prevents generic, template-looking output.
 
-1. Read `${CLAUDE_PLUGIN_ROOT}/references/visual-design-principles.md` — it contains concrete benchmarks, anti-patterns, and a per-slide checklist drawn from Apple keynotes, TED talks, Airbnb's pitch deck, and peer-reviewed research.
-2. Search the web for visual inspiration relevant to the specific presentation topic and audience. Look for:
+1. Read `${CLAUDE_PLUGIN_ROOT}/references/visual-design-principles.md` — concrete benchmarks, anti-patterns, and a visual checklist drawn from Apple keynotes, TED talks, Airbnb's pitch deck, and peer-reviewed research.
+2. Read `${CLAUDE_PLUGIN_ROOT}/references/slide-patterns.md` — layout catalog with usage guidance for choosing the right layout per content type.
+3. Search the web for visual inspiration relevant to the specific presentation topic and audience. Look for:
    - Best-in-class decks in the user's industry or presentation type
    - Current design trends (typography, color, layout) for the target context
    - Specific examples of how top presenters handle the content type (e.g., data-heavy, narrative, pitch)
-3. Synthesize findings into a concrete design direction before proposing anything.
+4. Synthesize findings into a concrete design direction before proposing anything.
 
-**Key visual benchmarks (from reference):**
-- 40%+ whitespace on every slide, 60-80% on hero slides
-- 60-30-10 color rule: dominant / secondary / accent
-- 1-2 fonts max, headline-to-body ratio of at least 1.5:1 (golden section scale: 16/24/36/54/81pt)
-- No cards/boxes as containers — use whitespace and alignment to group
-- No decorative gradients, shadows, or icons — flat, clean, intentional
-- Asymmetry over symmetry — offset elements, use rule of thirds
+### 3. Plan Slides From Content Outline
 
-### 3. Invoke the PPTX Skill
+Translate each content section into specific slides. Use the section's emphasis level and the design research to decide:
+
+- **How many slides** each section becomes (high emphasis sections may need 2-4 slides; low emphasis may be a single divider or combined with adjacent content)
+- **Which layout** for each slide (refer to the slide-patterns reference for the layout catalog)
+- **Content per slide** — enforce: 30 words max, one idea per slide, headlines state the takeaway
+- **Layout rhythm** — never the same layout more than 3 slides in a row; alternate between high-density and low-density slides
+
+Present the slide plan to the user for approval:
+
+> "Based on your content outline and visual research, here's how I'd structure the slides:
+>
+> - Section 1 (Opening) → 1 slide: Title slide
+> - Section 2 (Key insight, high emphasis) → 3 slides: Big number, Chart, Single message
+> - Section 3 (Context, medium) → 2 slides: Two-column, Bullet list
+> - ...
+>
+> Total: [N] slides. Does this structure work?"
+
+Get approval before proceeding.
+
+### 4. Invoke the PPTX Skill
 
 **MANDATORY**: Before generating any slides, read the pptx skill's SKILL.md completely. Search for a file named `SKILL.md` inside a `pptx` skill directory within the installed plugins.
 
 Read the full file — it contains critical guidance on the html2pptx workflow, color palettes, and validation.
 
-### 4. Design Decisions
+### 5. Design Decisions
 
-Before generating, state your design approach informed by the research:
+Before generating, state your visual design approach informed by the research:
 
-> "Based on your deck plan and visual research, I'll create this presentation with:
+> "I'll create this presentation with:
 > - **Color palette**: [chosen palette with hex codes — following 60-30-10 rule]
 > - **Typography**: [font choices + size scale — use web-safe fonts only]
 > - **Visual style**: [e.g., minimal with generous whitespace, inspired by X]
@@ -82,7 +97,7 @@ Before generating, state your design approach informed by the research:
 
 Get approval before writing any code.
 
-### 5. Generate Slides
+### 6. Generate Slides
 
 Follow the pptx skill's workflow (summarized here, but always defer to the skill's full instructions):
 
@@ -91,7 +106,7 @@ Follow the pptx skill's workflow (summarized here, but always defer to the skill
 3. Generate the presentation
 4. Create thumbnail grid for visual validation
 
-### 6. Visual Validation
+### 7. Visual Validation
 
 Review the thumbnail grid. For each slide check:
 - Is 40%+ of the slide whitespace?
@@ -104,7 +119,7 @@ Review the thumbnail grid. For each slide check:
 
 If issues found, fix and regenerate. Repeat until all slides pass.
 
-### 7. Deliver
+### 8. Deliver
 
 Provide the final .pptx file with a summary:
 
@@ -114,32 +129,17 @@ Provide the final .pptx file with a summary:
 >
 > Any adjustments needed?"
 
-## Layout Mapping
+## Slide Content Constraints
 
-| Deck Plan Layout | Implementation |
-|------------------|----------------|
-| Title slide | Full-width centered title, subtitle below |
-| Section header | Bold text, colored background block |
-| Single message | Large centered text |
-| Bullet list | Left-aligned text with spacing |
-| Two-column | 50/50 or 40/60 split |
-| Three-column | Three equal sections |
-| Full-bleed image | Image covers slide, text overlay |
-| Image + text | Image 60-70%, text beside or below |
-| Image grid | 2-4 images in grid with optional labels |
-| Single chart | Chart centered, headline above |
-| Chart + interpretation | Chart 60%, bullets 40% beside it |
-| Comparison table | 2-4 columns, 3-5 rows, highlight differences |
-| Big number | Oversized number with context label |
-| Quote | Centered italic text, attribution below |
-| Timeline | Horizontal flow with milestones |
-| Steps | Numbered steps, left-to-right or top-to-bottom |
-| Summary | 3-5 key takeaways |
-| Call to action | One clear next step, contact info |
-| Q&A | "Questions?" with optional contact info |
+Apply these to every slide during the planning step:
+
+- **30 words max per slide** — Move detail to speaker notes or split into additional slides
+- **One idea per slide** — If a slide needs "and", split it
+- **Headlines state the takeaway** — "Revenue grew 40%" not "Q3 Revenue Data"
+- **Prefer visuals over text** — If a point can be a number, chart, or image instead of bullets, use that
 
 ## Principles
 
-- **Follow the plan** — The deck plan is the spec; don't improvise without approval
+- **Follow the outline** — The content outline defines what to communicate; the slide plan defines how
 - **Validate visually** — Always review thumbnails before delivery
 - **Defer to pptx skill** — It has detailed, tested workflows for slide generation

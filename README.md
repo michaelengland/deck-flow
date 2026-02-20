@@ -1,6 +1,6 @@
 # deck-flow
 
-A Claude Code plugin that guides you through building presentations in three phases: **narrative**, **craft**, and **present**. Instead of jumping straight into slides, deck-flow helps you develop your story first, plan your deck structure second, and generate the PowerPoint last.
+A Claude Code plugin that guides you through building presentations in three phases: **narrative**, **craft**, and **present**. Instead of jumping straight into slides, deck-flow helps you develop your story first, structure your content second, and design + generate the PowerPoint last.
 
 ## Installation
 
@@ -33,29 +33,30 @@ It recommends from five proven narrative frameworks:
 
 **Output:** A validated narrative document saved to `docs/plans/`.
 
-### `/deck-flow:craft` — Plan your slides
+### `/deck-flow:craft` — Structure your content
 
-Once your narrative is solid, this skill translates it into a concrete slide-by-slide plan. For each slide it specifies:
+Once your narrative is solid, this skill organizes it into logical sections — without locking in specific slide counts or layouts. For each section it specifies:
 
-- Layout type (title, bullet list, two-column, big number, quote, etc.)
-- Content and headline
-- Speaker notes
-- Transition to the next slide
+- Key message (the takeaway)
+- Supporting content and evidence
+- Emphasis level (high / medium / low)
+- Speaker notes and transitions
 
-It includes guidance on slide count based on presentation length and validates the plan incrementally in batches.
+Slide-level decisions (how many slides per section, which layouts) are deliberately deferred to the present phase, where visual design research informs those choices.
 
-**Output:** A detailed deck plan saved to `docs/plans/`.
+**Output:** A content outline saved to `docs/plans/`.
 
-### `/deck-flow:present` — Generate the PowerPoint
+### `/deck-flow:present` — Design and generate the PowerPoint
 
-Takes your deck plan and produces the actual `.pptx` file. This skill:
+Takes your content outline and produces the actual `.pptx` file. This skill:
 
-1. Loads your deck plan
+1. Loads your content outline
 2. Researches visual design excellence — reads bundled design principles (benchmarks from Apple keynotes, TED, Airbnb's pitch deck) and searches the web for inspiration relevant to your topic
-3. Proposes design decisions (color palette, typography, visual style, layout rhythm) for approval
-4. Generates slides using the pptx skill
-5. Validates every slide against a concrete checklist (3-second rule, whitespace %, word count, etc.)
-6. Delivers the final file
+3. Plans slides from the outline — decides how many slides each section needs and which layouts to use, based on emphasis levels and design research
+4. Proposes the slide plan and visual design (color palette, typography, visual style) for approval
+5. Generates slides using the pptx skill
+6. Validates every slide against a concrete checklist (3-second rule, whitespace %, word count, etc.)
+7. Delivers the final file
 
 **Requires:** The pptx skill from the `document-skills` plugin. Install with:
 ```bash
@@ -67,7 +68,7 @@ claude plugin add anthropic/agent-skills:document-skills
 
 ```
 /deck-flow:narrative  →  /deck-flow:craft  →  /deck-flow:present
-    (story)                 (structure)            (slides)
+    (story)               (content)             (design + slides)
 ```
 
 Each phase produces a document you can review and revise before moving to the next.

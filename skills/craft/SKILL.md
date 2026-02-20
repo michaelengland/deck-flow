@@ -1,11 +1,11 @@
 ---
 name: craft
-description: "This skill should be used when the user asks to plan slides, create a deck outline, design slide layouts, or invoke /deck-flow:craft. Use AFTER /deck-flow:narrative. Translates narrative into slide-by-slide outline with layout recommendations."
+description: "This skill should be used when the user asks to plan a presentation structure, create a content outline, organize sections for a deck, or invoke /deck-flow:craft. Use AFTER /deck-flow:narrative. Translates narrative into a structured content outline with sections, key messages, and flow."
 ---
 
 # Craft
 
-Translate a validated narrative into a concrete slide-by-slide plan. This skill creates a detailed deck outline that can be executed by the pptx skill.
+Translate a validated narrative into a structured content outline. This skill organizes the story into logical sections with key messages, supporting content, and flow — without locking in specific slide counts or layouts (those are decided during the present phase based on visual design research).
 
 ## Prerequisites
 
@@ -23,79 +23,83 @@ Read the narrative document or user-provided context. Identify:
 - Total key points to cover
 - Logical groupings
 - Required evidence/visuals
-- Time/slide constraints
+- Time constraints
 
-### 2. Propose Slide Count
+### 2. Estimate Duration and Section Count
 
-Estimate total slides based on:
+Estimate total sections based on:
 
-| Presentation Length | Suggested Slides | Pace |
-|---------------------|------------------|------|
-| 5 minutes | 5-7 slides | ~1 min/slide |
-| 10 minutes | 8-12 slides | ~1 min/slide |
-| 20 minutes | 15-20 slides | ~1 min/slide |
-| 30+ minutes | 20-30 slides | Consider sections |
+| Presentation Length | Suggested Sections | Approach |
+|---------------------|-------------------|----------|
+| 5 minutes | 3-4 sections | Tight, focused |
+| 10 minutes | 4-6 sections | Room for evidence |
+| 20 minutes | 6-10 sections | Can develop arguments |
+| 30+ minutes | 8-12 sections | Consider part groupings |
 
-Present recommendation and get user agreement before detailing slides.
+Present recommendation and get user agreement before detailing sections.
 
-### 3. Create Slide-by-Slide Plan
+### 3. Create Content Outline
 
-For each slide, specify:
+For each section, specify:
 
 ```markdown
-### Slide N: [Title]
-**Layout**: [layout type - see options below]
+### Section N: [Title — states the takeaway]
+**Key message**: [The one thing the audience should take from this section]
 **Content**:
-- [Headline or key point]
-- [Supporting details]
-- [Visual element if any]
-**Speaker notes**: [What to say, not what's on the slide]
-**Transition**: [How this connects to next slide]
+- [Supporting point or evidence]
+- [Data, example, or proof point]
+**Emphasis**: [high / medium / low — how much visual weight this deserves]
+**Speaker notes**: [What to say, not what's on screen]
+**Transition**: [How this connects to next section]
 ```
 
-### Layout Options
-
-**For detailed layout guidance**, read `${CLAUDE_PLUGIN_ROOT}/references/slide-patterns.md`.
-
-**Common layouts:** Title slide, Section header, Single message, Bullet list, Two-column, Three-column, Full-bleed image, Image + text, Image grid, Single chart, Chart + interpretation, Comparison table, Big number, Quote, Timeline, Steps, Cycle, Summary, Call to action, Q&A. See reference for full catalog with usage guidance.
+**Emphasis levels guide the present phase:**
+- **high** — This section deserves maximum visual impact (could become multiple slides, large typography, dramatic layout)
+- **medium** — Standard treatment, clear and clean
+- **low** — Brief, transitional, or supporting (could be a simple divider or combined with adjacent content)
 
 ### 4. Validate Incrementally
 
-Present the plan in batches (5-7 slides at a time). After each batch:
-> "Here are slides 1-6. Does this flow work? Any adjustments?"
+Present the outline in batches. After each batch:
+> "Here are sections 1-4. Does this flow work? Any adjustments?"
 
-### 5. Document the Plan
+### 5. Document the Outline
 
-Save the validated plan to: `docs/plans/YYYY-MM-DD-<topic>-deck-plan.md`
+Save the validated outline to: `docs/plans/YYYY-MM-DD-<topic>-content-outline.md`
 
 **Document format:**
 
 ```markdown
-# [Presentation Title] - Deck Plan
+# [Presentation Title] - Content Outline
+
+> **Next step:** Use **/deck-flow:present** to design and generate the actual PowerPoint.
 
 ## Overview
-- **Total slides**: [N]
 - **Estimated duration**: [X minutes]
+- **Total sections**: [N]
 - **Narrative doc**: [link to narrative if exists]
 
-## Slide Plan
+## Content Outline
 
-### Slide 1: [Title]
-**Layout**: Title slide
+### Section 1: [Opening — Title / Hook]
+**Key message**: [First impression, context setting]
 **Content**:
-- Main title
-- Subtitle
-- Presenter / Date
+- [Title, subtitle, presenter info]
+**Emphasis**: high
 **Speaker notes**: [Introduction context]
 
-### Slide 2: [Title]
-**Layout**: [type]
+### Section 2: [Title — states the takeaway]
+**Key message**: [takeaway]
 **Content**:
-- [details]
+- [supporting details]
+**Emphasis**: [high / medium / low]
 **Speaker notes**: [talking points]
 **Transition**: [connection to next]
 
-[... continue for all slides ...]
+[... continue for all sections ...]
+
+## Source References
+- [Carried forward from narrative document]
 
 ## Design Notes
 - **Brand requirements**: [if any — logos, fonts, colors the user specified]
@@ -104,27 +108,27 @@ Save the validated plan to: `docs/plans/YYYY-MM-DD-<topic>-deck-plan.md`
 
 ## Handoff
 
-After plan approval, offer next steps:
+After outline approval, offer next steps:
 
-> "Your deck plan is ready. Next step:
-> - Use **/deck-flow:present** to generate the actual PowerPoint
-> - Or refine specific slides further"
+> "Your content outline is ready. Next step:
+> - Use **/deck-flow:present** to design and generate the actual PowerPoint
+> - Or refine the outline further"
 
-## Content Constraints
+## Content Principles
 
-Apply these to every slide in the plan. If a slide violates any of these, restructure it before finalizing.
+Apply these to every section in the outline. If a section violates any of these, restructure it before finalizing.
 
-- **One idea per slide** — If you need "and", split into two slides
-- **30 words max per slide** — If content exceeds this, move detail to speaker notes or split the slide
+- **One key message per section** — If a section has two takeaways, split it
 - **Headlines state the takeaway** — "Revenue grew 40%" not "Q3 Revenue Data". The headline IS the point.
-- **Vary layout rhythm** — Never use the same layout more than 3 slides in a row. Alternate between high-density (data, bullets) and low-density (single message, image) slides.
-- **Prefer visuals over text** — If a point can be a number, chart, image, or comparison instead of a bullet list, use that instead
-- **Speaker notes carry the detail** — The slide is a visual aid, not a script. Dense explanation belongs in notes, not on the slide.
+- **Keep supporting content focused** — 2-3 supporting points max per section. More than that means the section should be split.
+- **Prefer evidence over assertion** — Numbers, examples, and comparisons are stronger than bullet-point claims
+- **Speaker notes carry the detail** — Dense explanation belongs in notes, not on screen
+- **Vary emphasis** — Not every section is high emphasis. Alternating intensity creates rhythm.
 
 ### Handling Dense Content
 
 When a narrative point requires complex information:
 
-1. **Split progressively** — Break into 3-4 slides that build on each other
-2. **Lead with the insight** — First slide states the conclusion, following slides show the evidence
-3. **Use the appendix pattern** — Simple version on the slide, detail in a marked appendix section at the end
+1. **Split into sub-sections** — Break into 2-3 sections that build on each other
+2. **Lead with the insight** — First section states the conclusion, following sections show the evidence
+3. **Use the appendix pattern** — Main outline has the simple version, mark detailed backup as appendix material
