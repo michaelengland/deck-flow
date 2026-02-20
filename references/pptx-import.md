@@ -4,12 +4,12 @@ How to import existing PowerPoint presentations for editing. Read this before ru
 
 ## How It Works
 
-The import script (`${CLAUDE_PLUGIN_ROOT}/scripts/pptx-to-js.py`) takes a `.pptx` file and produces:
+The import script (`${CLAUDE_PLUGIN_ROOT}/scripts/pptx-to-js.py`) takes a `.pptx` file and produces a **deck folder** containing:
 
 1. A **PptxGenJS generation script** (`.js`) — one function per slide, runnable with `node`
 2. An **assets directory** with extracted images
 
-The generation script is the primary artifact. It reproduces the deck when run, and can be edited to make changes.
+The generation script is the primary artifact. It reproduces the deck when run from within the deck folder, and can be edited to make changes.
 
 ## Running the Script
 
@@ -18,13 +18,22 @@ The generation script is the primary artifact. It reproduces the deck when run, 
 pip install python-pptx
 
 # Run the import
-python ${CLAUDE_PLUGIN_ROOT}/scripts/pptx-to-js.py <input.pptx> --output generate-deck.js --assets-dir assets
+python ${CLAUDE_PLUGIN_ROOT}/scripts/pptx-to-js.py <input.pptx>
 ```
+
+This creates a deck folder automatically. For example, `quarterly-review.pptx` produces:
+
+```
+decks/quarterly-review/
+  quarterly-review.js     # generation script
+  assets/                 # extracted images
+```
+
+Run the script from within the deck folder: `cd decks/quarterly-review && node quarterly-review.js`
 
 **Arguments:**
 - `<input.pptx>` — path to the source PowerPoint file (required)
-- `--output` / `-o` — output JS file path (default: `generate-deck.js`)
-- `--assets-dir` / `-a` — directory for extracted images (default: `assets`)
+- `--deck-dir` / `-d` — override the deck directory (default: `decks/<name>`)
 
 ## What Gets Imported
 
@@ -77,7 +86,7 @@ function createSlide2(pres) { ... }
 // --- Build presentation ---
 createSlide1(pres);
 createSlide2(pres);
-pres.writeFile({ fileName: "output.pptx" });
+pres.writeFile({ fileName: "company-overview.pptx" });
 ```
 
 **Why one function per slide:**
@@ -106,7 +115,7 @@ Delete the function and remove its call from the build section.
 **Reorder slides:**
 Change the order of `createSlideN(pres)` calls at the bottom of the file.
 
-**Always regenerate and validate** after changes — run with `node`, generate thumbnails, review visually.
+**Always regenerate and validate** after changes — run with `node` from the deck folder, generate thumbnails, review visually.
 
 ## Troubleshooting
 
@@ -126,4 +135,4 @@ Check `// WARNING:` comments in the generated JS file. Common causes:
 EMU-to-inch conversion is mathematically exact but rounding to 2 decimal places can shift elements by fractions of a pixel. Adjust `x`/`y`/`w`/`h` values manually if needed.
 
 ### Images not showing
-Ensure the `assets/` directory is in the same location relative to the JS file as when the import ran. Image paths in the script are relative.
+Ensure you are running `node` from within the deck folder. Image paths in the script are relative to the deck folder (e.g., `assets/slide1_abc123.jpg`).

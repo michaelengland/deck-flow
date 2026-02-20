@@ -24,22 +24,9 @@ claude plugin add michaelengland/deck-flow
 
 ## Skills
 
-### `/deck-flow:import` — Import an existing presentation
-
-Start here when editing an existing deck. This skill takes a `.pptx` file and reverse-engineers it into an editable PptxGenJS generation script:
-
-1. Parses all slides — text, shapes, images, tables, charts, speaker notes
-2. Produces a generation script (`generate-deck.js`) with one function per slide
-3. Extracts embedded images to an `assets/` directory
-4. Validates the import by regenerating and comparing visually
-
-After import, you can edit the deck directly or enter any phase of the workflow to make targeted improvements.
-
-**Output:** A generation script (`generate-deck.js`) and extracted images (`assets/`).
-
 ### `/deck-flow:narrative` — Develop your story
 
-Start here for new presentations. This skill helps you figure out *what to say* before thinking about slides. Through a guided conversation, it explores:
+Start here. This skill helps you figure out *what to say* before thinking about slides. Through a guided conversation, it explores:
 
 - **Audience** — Who's watching and what do they care about?
 - **Purpose** — What should the audience think, feel, or do afterward?
@@ -56,7 +43,7 @@ It recommends from five proven narrative frameworks:
 | Before → After → Bridge | Transformations, case studies |
 | Hook → Build → Payoff | Persuasive, storytelling |
 
-**Output:** A validated narrative document saved to `docs/plans/`.
+**Output:** A narrative document saved to the deck folder.
 
 ### `/deck-flow:craft` — Structure your content
 
@@ -67,7 +54,7 @@ Organizes your narrative into logical sections — without locking in slide coun
 - Emphasis level (high / medium / low)
 - Speaker notes and transitions
 
-**Output:** A content outline saved to `docs/plans/`.
+**Output:** A content outline saved to the deck folder.
 
 ### `/deck-flow:design` — Plan slides and visual direction
 
@@ -77,7 +64,7 @@ Turns your content outline into a complete slide design. This skill:
 2. Plans how content sections become slides — decides slide count, layouts, and rhythm based on emphasis levels
 3. Proposes the visual direction (color palette, typography, style) for approval
 
-**Output:** A slide design document saved to `docs/plans/`.
+**Output:** A slide design document saved to the deck folder.
 
 ### `/deck-flow:present` — Generate the PowerPoint
 
@@ -87,6 +74,34 @@ Executes your slide design to produce the actual `.pptx` file:
 2. Validates every slide against a visual checklist (whitespace, contrast, anti-patterns)
 3. Fixes and regenerates until all slides pass
 4. Delivers the final file
+
+### `/deck-flow:import` — Import an existing presentation
+
+Already have a deck you want to improve? This skill takes a `.pptx` file and reverse-engineers it into an editable PptxGenJS generation script:
+
+1. Parses all slides — text, shapes, images, tables, charts, speaker notes
+2. Creates a deck folder with a generation script and extracted images
+3. Validates the import by regenerating and comparing visually
+
+After import, you can edit the deck directly or enter any phase of the workflow above to make targeted improvements.
+
+**Output:** A deck folder (e.g., `decks/quarterly-review/`) containing the generation script, extracted images, and all subsequent artifacts.
+
+## Deck Folder Structure
+
+Each deck gets its own folder under `decks/`, keeping all artifacts self-contained:
+
+```
+decks/quarterly-review/
+  quarterly-review.js         # generation script
+  quarterly-review.pptx       # output
+  quarterly-review.pdf        # PDF export
+  narrative.md                # story (from narrative phase)
+  content-outline.md          # structure (from craft phase)
+  slide-design.md             # visual plan (from design phase)
+  assets/                     # extracted/embedded images
+  slides/                     # validation images + thumbnails
+```
 
 ## Typical Workflow
 

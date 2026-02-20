@@ -11,7 +11,7 @@ Turn a content outline into a complete slide design — deciding how many slides
 
 - A content outline exists (from **/deck-flow:craft**), OR
 - User provides a clear structured outline, OR
-- A generation script (`generate-deck.js`) exists from a previous import (edit mode)
+- A PptxGenJS generation script exists from a previous import or creation (edit mode)
 
 If no outline or generation script exists: "Would you like to use **/deck-flow:craft** first to structure your content?"
 
@@ -19,7 +19,7 @@ If no outline or generation script exists: "Would you like to use **/deck-flow:c
 
 ### Edit Mode Check
 
-Before starting, check: does a `generate-deck.js` file exist in the working directory?
+Before starting, check: does a deck folder in `decks/` contain a PptxGenJS generation script (a `.js` file containing `require("pptxgenjs")`)?
 
 - **If no**: Follow the standard process below.
 - **If yes**: This is an edit. Read the generation script to understand the current deck, then:
@@ -91,7 +91,7 @@ Get approval before documenting.
 
 ### 5. Document the Slide Design
 
-Save the validated design to: `docs/plans/YYYY-MM-DD-<topic>-slide-design.md`
+Save the validated design to `decks/<name>/slide-design.md` (use the existing deck folder, or create one if it doesn't exist).
 
 **Document format:**
 

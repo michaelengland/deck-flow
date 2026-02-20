@@ -11,7 +11,7 @@ Develop the story and message before thinking about slides. This skill converts 
 
 ### Edit Mode Check
 
-Before starting, check: does a `generate-deck.js` file exist in the working directory?
+Before starting, check: does a deck folder in `decks/` contain a PptxGenJS generation script (a `.js` file containing `require("pptxgenjs")`)?
 
 - **If no**: This is a new presentation. Follow the standard process below.
 - **If yes**: This is an edit. Read the generation script to understand the current slides, then:
@@ -92,7 +92,7 @@ Include these in the narrative document so they carry forward into slide creatio
 
 ### 6. Document the Narrative
 
-Save the validated narrative to: `docs/plans/YYYY-MM-DD-<topic>-narrative.md`
+Save the validated narrative to `decks/<name>/narrative.md` (create the deck folder if it doesn't exist).
 
 **Document format:**
 

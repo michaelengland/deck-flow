@@ -26,22 +26,28 @@ Read `${CLAUDE_PLUGIN_ROOT}/references/pptx-import.md` for the full import workf
 1. Ensure python-pptx is installed: `pip install python-pptx`
 2. Run the script:
    ```bash
-   python ${CLAUDE_PLUGIN_ROOT}/scripts/pptx-to-js.py <input.pptx> --output generate-deck.js --assets-dir assets
+   python ${CLAUDE_PLUGIN_ROOT}/scripts/pptx-to-js.py <input.pptx>
+   ```
+   This creates a deck folder at `decks/<name>/` containing the generation script and extracted images. For example, `quarterly-review.pptx` produces:
+   ```
+   decks/quarterly-review/
+     quarterly-review.js     # generation script
+     assets/                 # extracted images
    ```
 3. Check the exit code. If non-zero, read stderr and diagnose the issue.
 
 ### 4. Validate the Import
 
 1. Install PptxGenJS if needed: `npm install pptxgenjs`
-2. Run the generated script: `node generate-deck.js`
-3. Verify it produces `output.pptx`
-4. Convert to slide images and create a thumbnail grid using the same validation workflow from `${CLAUDE_PLUGIN_ROOT}/references/pptx-generation.md` (PDF Export and Visual Validation section)
+2. Run the generated script from the deck folder: `cd decks/<name> && node <name>.js`
+3. Verify it produces `<name>.pptx` in the deck folder
+4. Convert to slide images and create a thumbnail grid using the same validation workflow from `${CLAUDE_PLUGIN_ROOT}/references/pptx-generation.md` (PDF Export and Visual Validation section) — all output goes into the deck folder
 5. Show the thumbnail grid to the user and ask:
    > "Here's the imported version of your deck. Does it look correct? Any noticeable differences from the original?"
 
 ### 5. Review Warnings
 
-Read through the generated `generate-deck.js` for any `// WARNING:` comments. Summarize these for the user:
+Read through the generated `.js` file for any `// WARNING:` comments. Summarize these for the user:
 
 > "The import completed with these notes:
 > - [list any warnings — font substitutions, gradient conversions, skipped elements]
@@ -50,7 +56,7 @@ Read through the generated `generate-deck.js` for any `// WARNING:` comments. Su
 
 ### 6. Hand Off
 
-The `generate-deck.js` file is now the source of truth for the deck. Present the user's options:
+The generation script is now the source of truth for the deck. Present the user's options:
 
 > "Your presentation is imported. You can now:
 > - **Edit directly** — Tell me what to change and I'll modify the generation script

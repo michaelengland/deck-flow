@@ -12,7 +12,7 @@ Translate a validated narrative into a structured content outline. This skill or
 Before using this skill, ensure one of:
 - A narrative document exists (from **/deck-flow:narrative**), OR
 - User provides clear presentation goals, audience, and key message, OR
-- A generation script (`generate-deck.js`) exists from a previous import (edit mode)
+- A PptxGenJS generation script exists from a previous import or creation (edit mode)
 
 If no narrative or generation script exists, suggest: "Would you like to use **/deck-flow:narrative** first to develop your story?"
 
@@ -20,7 +20,7 @@ If no narrative or generation script exists, suggest: "Would you like to use **/
 
 ### Edit Mode Check
 
-Before starting, check: does a `generate-deck.js` file exist in the working directory?
+Before starting, check: does a deck folder in `decks/` contain a PptxGenJS generation script (a `.js` file containing `require("pptxgenjs")`)?
 
 - **If no**: Follow the standard process below.
 - **If yes**: This is an edit. Read the generation script to understand the current deck, then:
@@ -84,7 +84,7 @@ Present the outline in batches. After each batch:
 
 ### 5. Document the Outline
 
-Save the validated outline to: `docs/plans/YYYY-MM-DD-<topic>-content-outline.md`
+Save the validated outline to `decks/<name>/content-outline.md` (use the existing deck folder, or create one if it doesn't exist).
 
 **Document format:**
 

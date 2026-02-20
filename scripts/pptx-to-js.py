@@ -2,7 +2,7 @@
 """Reverse-engineer a .pptx file into a PptxGenJS generation script.
 
 Usage:
-    python pptx-to-js.py <input.pptx> [--output generate-deck.js] [--assets-dir assets]
+    python pptx-to-js.py <input.pptx> [--deck-dir decks/<name>]
 
 Produces a JavaScript file that, when run with `node`, reproduces the
 presentation using PptxGenJS. Embedded images are extracted to the assets
@@ -137,6 +137,16 @@ def safe_font(font_name, warnings):
     return "Arial"
 
 
+def slugify(name):
+    """Convert a filename to a clean lowercase slug.
+
+    'My Presentation (Final)' -> 'my-presentation-final'
+    """
+    name = name.lower()
+    name = re.sub(r"[^a-z0-9]+", "-", name)
+    return name.strip("-")
+
+
 def js_string(s):
     """Escape a string for safe inclusion in JavaScript source."""
     s = s.replace("\\", "\\\\")
@@ -160,7 +170,8 @@ def indent(code, level=2):
 def extract_images(prs, assets_dir):
     """Extract embedded images from the presentation.
 
-    Returns a dict mapping python id(shape) -> relative asset path.
+    Returns a dict mapping python id(shape) -> relative asset path
+    (relative to the deck folder, e.g. "assets/slide1_abc123.jpg").
     """
     os.makedirs(assets_dir, exist_ok=True)
     image_map = {}
@@ -194,8 +205,10 @@ def extract_images(prs, assets_dir):
                 with open(filepath, "wb") as f:
                     f.write(blob)
 
-                image_map[id(shape)] = filepath
-                seen_hashes[blob_hash] = filepath
+                # Store path relative to deck folder for use in generated JS
+                relative_path = os.path.join("assets", filename)
+                image_map[id(shape)] = relative_path
+                seen_hashes[blob_hash] = relative_path
 
     return image_map
 
@@ -798,7 +811,7 @@ def process_slide(slide, slide_idx, image_map, warnings):
 # JS assembly
 # ---------------------------------------------------------------------------
 
-def generate_js(prs, image_map, output_path, warnings):
+def generate_js(prs, image_map, output_path, pptx_filename, warnings):
     """Assemble the full JavaScript file."""
     slide_count = len(prs.slides)
     lines = []
@@ -839,7 +852,7 @@ def generate_js(prs, image_map, output_path, warnings):
     for i in range(slide_count):
         lines.append(f"createSlide{i + 1}(pres);")
     lines.append("")
-    lines.append('pres.writeFile({ fileName: "output.pptx" });')
+    lines.append(f'pres.writeFile({{ fileName: {js_string(pptx_filename)} }});')
 
     return "\n".join(lines)
 
@@ -854,14 +867,9 @@ def main():
     )
     parser.add_argument("input", help="Path to the .pptx file")
     parser.add_argument(
-        "--output", "-o",
-        default="generate-deck.js",
-        help="Output path for the generated JS file (default: generate-deck.js)",
-    )
-    parser.add_argument(
-        "--assets-dir", "-a",
-        default="assets",
-        help="Directory for extracted images (default: assets)",
+        "--deck-dir", "-d",
+        default=None,
+        help="Deck output directory (default: decks/<name>)",
     )
     args = parser.parse_args()
 
@@ -873,24 +881,34 @@ def main():
         print(f"Error: Expected a .pptx file, got: {args.input}", file=sys.stderr)
         sys.exit(1)
 
+    # Derive paths from input filename
+    base_name = slugify(os.path.splitext(os.path.basename(args.input))[0])
+    deck_dir = args.deck_dir or os.path.join("decks", base_name)
+    js_path = os.path.join(deck_dir, base_name + ".js")
+    assets_dir = os.path.join(deck_dir, "assets")
+    pptx_filename = base_name + ".pptx"
+
+    os.makedirs(deck_dir, exist_ok=True)
+
     print(f"Reading: {args.input}")
+    print(f"Deck folder: {deck_dir}/")
     prs = Presentation(args.input)
     print(f"Found {len(prs.slides)} slides")
 
     warnings = []
 
     # Extract images
-    image_map = extract_images(prs, args.assets_dir)
+    image_map = extract_images(prs, assets_dir)
     if image_map:
-        print(f"Extracted {len(image_map)} images to {args.assets_dir}/")
+        print(f"Extracted {len(image_map)} images to {assets_dir}/")
 
-    # Generate JS
-    js_code = generate_js(prs, image_map, args.output, warnings)
+    # Generate JS (uses relative paths — run from within the deck folder)
+    js_code = generate_js(prs, image_map, js_path, pptx_filename, warnings)
 
     # Write output
-    with open(args.output, "w") as f:
+    with open(js_path, "w") as f:
         f.write(js_code)
-    print(f"Generated: {args.output}")
+    print(f"Generated: {js_path}")
 
     # Print warnings summary
     if warnings:
@@ -900,7 +918,7 @@ def main():
         for w in unique_warnings:
             print(f"  - {w}")
 
-    print("\nDone. Run with: node " + args.output)
+    print(f"\nDone. Run with: cd {deck_dir} && node {base_name}.js")
 
 
 if __name__ == "__main__":

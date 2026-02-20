@@ -206,10 +206,14 @@ Only use fonts guaranteed to render correctly:
 
 After generating a .pptx, always produce a PDF copy and convert slides to images for visual review.
 
-**Standardized output paths:**
-- PDF: `output.pdf` (alongside `output.pptx`)
+**All output goes into the deck folder** (`decks/<name>/`):
+- Generation script: `<name>.js`
+- PowerPoint: `<name>.pptx`
+- PDF: `<name>.pdf`
 - Slide images: `slides/slide-01.jpg`, `slides/slide-02.jpg`, etc.
 - Thumbnail grid: `slides/thumbnails.jpg`
+
+Run generation from within the deck folder: `cd decks/<name> && node <name>.js`
 
 Try these approaches in order based on what's available.
 
@@ -219,15 +223,17 @@ Try these approaches in order based on what's available.
 rm -rf slides && mkdir -p slides
 osascript -e '
   tell application "Microsoft PowerPoint"
-    set pptxPath to POSIX file "'"$(pwd)/output.pptx"'"
+    set pptxPath to POSIX file "'"$(pwd)/<name>.pptx"'"
     open pptxPath
-    save active presentation in POSIX file "'"$(pwd)/output.pdf"'" as save as PDF
+    save active presentation in POSIX file "'"$(pwd)/<name>.pdf"'" as save as PDF
     save active presentation in POSIX file "'"$(pwd)/slides/slide"'" as save as PNG
     close active presentation
   end tell'
 ```
 
-This creates `output.pdf` and `slides/slide-01.png`, `slides/slide-02.png`, etc.
+This creates `<name>.pdf` and `slides/slide-01.png`, `slides/slide-02.png`, etc.
+
+Replace `<name>` with the actual deck name (e.g., `quarterly-review`).
 
 ### Option B: LibreOffice + Poppler
 
@@ -235,10 +241,10 @@ This creates `output.pdf` and `slides/slide-01.png`, `slides/slide-02.png`, etc.
 rm -rf slides && mkdir -p slides
 
 # Convert .pptx to PDF via LibreOffice
-soffice --headless --convert-to pdf output.pptx
+soffice --headless --convert-to pdf <name>.pptx
 
 # Convert PDF pages to JPEG images
-pdftoppm -jpeg -r 150 output.pdf slides/slide
+pdftoppm -jpeg -r 150 <name>.pdf slides/slide
 # Creates slides/slide-01.jpg, slides/slide-02.jpg, etc.
 ```
 
