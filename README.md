@@ -1,8 +1,8 @@
 # deck-flow
 
-A Claude Code plugin that guides you through building presentations in four phases: **narrative**, **craft**, **design**, and **present**. Instead of jumping straight into slides, deck-flow separates what to say, how to structure it, how it should look, and how to build it.
+Build and edit PowerPoint presentations with AI. A [Claude Code](https://claude.com/claude-code) plugin that generates `.pptx` files through a guided workflow — separating story, structure, design, and slide generation into distinct phases for better results.
 
-Already have a deck? Use **import** to reverse-engineer it into an editable generation script, then improve it through any phase.
+Instead of asking AI to "make me a presentation" and getting generic slides, deck-flow walks you through developing a strong narrative, structuring content, researching visual design, and then generating validated slides. Already have a deck? Import it and improve it through any phase.
 
 ## Requirements
 
