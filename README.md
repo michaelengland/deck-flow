@@ -7,9 +7,10 @@ A Claude Code plugin that guides you through building presentations in four phas
 The narrative, craft, and design phases have no dependencies. The present phase (PPTX generation) requires:
 
 - **Node.js** — runs PptxGenJS to generate .pptx files
-- **Microsoft PowerPoint** or **LibreOffice** — converts .pptx to images for visual validation
+- **Python** — creates thumbnail grids for visual validation
+- **Microsoft PowerPoint** or **LibreOffice** — converts .pptx to images for validation
 
-npm packages are installed automatically during generation.
+npm and pip packages are installed automatically during generation.
 
 ## Installation
 
