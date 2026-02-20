@@ -202,10 +202,12 @@ Only use fonts guaranteed to render correctly:
 - Trebuchet MS
 - Impact
 
-## Visual Validation
+## PDF Export and Visual Validation
 
-After generating a .pptx, convert slides to images for visual review. Use these standardized output paths:
+After generating a .pptx, always produce a PDF copy and convert slides to images for visual review.
 
+**Standardized output paths:**
+- PDF: `output.pdf` (alongside `output.pptx`)
 - Slide images: `slides/slide-01.jpg`, `slides/slide-02.jpg`, etc.
 - Thumbnail grid: `slides/thumbnails.jpg`
 
@@ -213,19 +215,19 @@ Try these approaches in order based on what's available.
 
 ### Option A: PowerPoint on macOS
 
-PowerPoint can export slides directly as PNG images, skipping PDF entirely:
-
 ```bash
 mkdir -p slides
 osascript -e '
   tell application "Microsoft PowerPoint"
-    open POSIX file "'"$(pwd)/output.pptx"'"
+    set pptxPath to POSIX file "'"$(pwd)/output.pptx"'"
+    open pptxPath
+    save active presentation in POSIX file "'"$(pwd)/output.pdf"'" as save as PDF
     save active presentation in POSIX file "'"$(pwd)/slides/slide"'" as save as PNG
     close active presentation
   end tell'
 ```
 
-This creates `slides/slide-01.png`, `slides/slide-02.png`, etc.
+This creates `output.pdf` and `slides/slide-01.png`, `slides/slide-02.png`, etc.
 
 ### Option B: LibreOffice + Poppler
 
@@ -233,14 +235,11 @@ This creates `slides/slide-01.png`, `slides/slide-02.png`, etc.
 mkdir -p slides
 
 # Convert .pptx to PDF via LibreOffice
-soffice --headless --convert-to pdf --outdir slides output.pptx
+soffice --headless --convert-to pdf output.pptx
 
 # Convert PDF pages to JPEG images
-pdftoppm -jpeg -r 150 slides/output.pdf slides/slide
+pdftoppm -jpeg -r 150 output.pdf slides/slide
 # Creates slides/slide-01.jpg, slides/slide-02.jpg, etc.
-
-# Clean up intermediate PDF
-rm slides/output.pdf
 ```
 
 ### Creating the thumbnail grid

@@ -57,7 +57,8 @@ If issues found, fix and regenerate. Repeat until all slides pass.
 Provide the final .pptx file with a summary:
 
 > "Your presentation is ready:
-> - **File**: [filename.pptx]
+> - **PowerPoint**: [filename.pptx]
+> - **PDF**: [filename.pdf]
 > - **Slides**: [N] slides
 >
 > Any adjustments needed?"
