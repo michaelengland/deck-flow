@@ -1,8 +1,21 @@
 # deck-flow
 
-Build and edit PowerPoint presentations with AI. A [Claude Code](https://claude.com/claude-code) plugin that generates `.pptx` files through a guided workflow — separating story, structure, design, and slide generation into distinct phases for better results.
+Build and edit PowerPoint presentations with AI. A [Claude Code](https://claude.com/claude-code) plugin that generates `.pptx` and `.pdf` files through a guided workflow — separating story, structure, design, and slide generation into distinct phases for better results.
 
-Instead of asking AI to "make me a presentation" and getting generic slides, deck-flow walks you through developing a strong narrative, structuring content, researching visual design, and then generating validated slides. Already have a deck? Import it and improve it through any phase.
+## Why not just "make me a presentation"?
+
+When you ask AI to generate a presentation in one shot, you get generic slides with surface-level content. The AI has to guess your audience, pick a structure, decide on visuals, and write content all at once — and it cuts corners on all of them.
+
+deck-flow fixes this by breaking the problem into phases that build on each other:
+
+1. **Narrative first** — figure out what to say before touching slides. Who's the audience? What should they do afterward? What's the one thing they should remember? This alone transforms the output.
+2. **Structure before layout** — organize your key messages, evidence, and emphasis levels into sections. Decide what matters most before deciding how many slides it gets.
+3. **Research-driven design** — the design phase reads visual design principles and searches the web for relevant inspiration before proposing colors, fonts, and layouts. No generic templates.
+4. **Validated generation** — every slide is checked against a visual quality checklist (whitespace, contrast, anti-patterns) and regenerated until it passes.
+
+Each phase produces a document you review and approve before moving on. You catch problems early — a weak narrative gets fixed at the narrative stage, not after 30 slides have been generated. And because each phase's output is a readable document, you can edit at any level: rethink the story without touching the design, or redesign the visuals without rewriting the content.
+
+Already have a deck? Use **import** to reverse-engineer it into the pipeline and improve it through any phase.
 
 ## Requirements
 
