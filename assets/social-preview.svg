@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a"/>
+      <stop offset="100%" style="stop-color:#1e293b"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1280" height="640" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="640" y="180" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="72" font-weight="700" fill="#f8fafc" letter-spacing="-2">deck-flow</text>
+
+  <!-- Subtitle -->
+  <text x="640" y="230" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="24" fill="#94a3b8">Build and edit PowerPoint presentations with AI</text>
+
+  <!-- Workflow pipeline -->
+  <!-- Narrative -->
+  <rect x="108" y="320" width="200" height="80" rx="12" fill="#1e3a5f" stroke="#3b82f6" stroke-width="2"/>
+  <text x="208" y="355" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="600" fill="#f8fafc">narrative</text>
+  <text x="208" y="380" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#94a3b8">story</text>
+
+  <!-- Arrow 1 -->
+  <path d="M318 360 L358 360" stroke="#475569" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+
+  <!-- Craft -->
+  <rect x="368" y="320" width="200" height="80" rx="12" fill="#1e3a5f" stroke="#3b82f6" stroke-width="2"/>
+  <text x="468" y="355" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="600" fill="#f8fafc">craft</text>
+  <text x="468" y="380" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#94a3b8">content</text>
+
+  <!-- Arrow 2 -->
+  <path d="M578 360 L618 360" stroke="#475569" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+
+  <!-- Design -->
+  <rect x="628" y="320" width="200" height="80" rx="12" fill="#1e3a5f" stroke="#3b82f6" stroke-width="2"/>
+  <text x="728" y="355" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="600" fill="#f8fafc">design</text>
+  <text x="728" y="380" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#94a3b8">visuals</text>
+
+  <!-- Arrow 3 -->
+  <path d="M838 360 L878 360" stroke="#475569" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+
+  <!-- Present -->
+  <rect x="888" y="320" width="200" height="80" rx="12" fill="#1e3a5f" stroke="#3b82f6" stroke-width="2"/>
+  <text x="988" y="355" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="600" fill="#f8fafc">present</text>
+  <text x="988" y="380" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#94a3b8">.pptx</text>
+
+  <!-- Arrow markers -->
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <!-- Badge -->
+  <rect x="515" y="460" width="250" height="36" rx="18" fill="none" stroke="#475569" stroke-width="1.5"/>
+  <text x="640" y="484" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="#94a3b8">Claude Code Plugin</text>
+</svg>
