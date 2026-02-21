@@ -1,11 +1,11 @@
 ---
 name: present
-description: "This skill should be used when the user asks to generate the PowerPoint, build the .pptx file, render slides, or invoke /deck-flow:present. Use AFTER /deck-flow:design. Executes a slide design document to produce the final .pptx file."
+description: "This skill should be used when the user asks to generate the PowerPoint, build the .pptx file, render slides, or invoke /deck-flow:present. Use AFTER /deck-flow:design. Executes a slide design document to produce the final .pptx and .pdf files."
 ---
 
 # Present
 
-Execute a slide design document to generate the final PowerPoint file. This skill takes the complete slide-by-slide spec (with layouts, content, and visual direction) and produces a validated .pptx.
+Execute a slide design document to generate the final presentation. This skill takes the complete slide-by-slide spec (with layouts, content, and visual direction) and produces a validated `.pptx` and `.pdf`.
 
 ## Prerequisites
 
@@ -44,8 +44,9 @@ Read the slide design document. Extract:
 **Workflow:**
 1. Create a JavaScript file that builds the presentation using PptxGenJS (10" × 5.625" for 16:9)
 2. Run with `node` to generate the `.pptx`
-3. Convert to slide images for validation (see "Visual Validation" in the reference for multiple approaches depending on whether PowerPoint or LibreOffice is available)
-4. Create a thumbnail grid from the slide images
+3. Export to `.pdf` (see the reference for PowerPoint and LibreOffice approaches)
+4. Convert to slide images for validation (see "Visual Validation" in the reference)
+5. Create a thumbnail grid from the slide images
 
 **Critical reminders (from reference):**
 - NEVER use "#" in hex colors — causes file corruption

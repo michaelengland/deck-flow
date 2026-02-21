@@ -66,14 +66,15 @@ Turns your content outline into a complete slide design. This skill:
 
 **Output:** A slide design document saved to the deck folder.
 
-### `/deck-flow:present` — Generate the PowerPoint
+### `/deck-flow:present` — Generate the presentation
 
-Executes your slide design to produce the actual `.pptx` file:
+Executes your slide design to produce the final `.pptx` and `.pdf`:
 
 1. Generates slides using PptxGenJS
-2. Validates every slide against a visual checklist (whitespace, contrast, anti-patterns)
-3. Fixes and regenerates until all slides pass
-4. Delivers the final file
+2. Exports to PDF
+3. Validates every slide against a visual checklist (whitespace, contrast, anti-patterns)
+4. Fixes and regenerates until all slides pass
+5. Delivers both files
 
 ### `/deck-flow:import` — Import an existing presentation
 

@@ -202,9 +202,7 @@ Only use fonts guaranteed to render correctly:
 - Trebuchet MS
 - Impact
 
-## PDF Export and Visual Validation
-
-After generating a .pptx, always produce a PDF copy and convert slides to images for visual review.
+## Output
 
 **All output goes into the deck folder** (`decks/<name>/`):
 - Generation script: `<name>.js`
@@ -215,42 +213,56 @@ After generating a .pptx, always produce a PDF copy and convert slides to images
 
 Run generation from within the deck folder: `cd decks/<name> && node <name>.js`
 
-Try these approaches in order based on what's available.
+## PDF Export
+
+Always produce a PDF alongside the `.pptx`. The PDF is a primary deliverable, not an intermediate file. Try these approaches in order:
 
 ### Option A: PowerPoint on macOS
 
+```bash
+osascript -e '
+  tell application "Microsoft PowerPoint"
+    set pptxPath to POSIX file "'"$(pwd)/<name>.pptx"'"
+    open pptxPath
+    save active presentation in POSIX file "'"$(pwd)/<name>.pdf"'" as save as PDF
+    close active presentation
+  end tell'
+```
+
+### Option B: LibreOffice
+
+```bash
+soffice --headless --convert-to pdf <name>.pptx
+```
+
+Replace `<name>` with the actual deck name (e.g., `quarterly-review`).
+
+## Visual Validation
+
+After generating the `.pptx` and `.pdf`, convert slides to images for visual review.
+
+### Generating slide images
+
+**PowerPoint on macOS:**
 ```bash
 rm -rf slides && mkdir -p slides
 osascript -e '
   tell application "Microsoft PowerPoint"
     set pptxPath to POSIX file "'"$(pwd)/<name>.pptx"'"
     open pptxPath
-    save active presentation in POSIX file "'"$(pwd)/<name>.pdf"'" as save as PDF
     save active presentation in POSIX file "'"$(pwd)/slides/slide"'" as save as PNG
     close active presentation
   end tell'
 ```
 
-This creates `<name>.pdf` and `slides/slide-01.png`, `slides/slide-02.png`, etc.
-
-Replace `<name>` with the actual deck name (e.g., `quarterly-review`).
-
-### Option B: LibreOffice + Poppler
-
+**LibreOffice + Poppler:**
 ```bash
 rm -rf slides && mkdir -p slides
-
-# Convert .pptx to PDF via LibreOffice
-soffice --headless --convert-to pdf <name>.pptx
-
-# Convert PDF pages to JPEG images
 pdftoppm -jpeg -r 150 <name>.pdf slides/slide
 # Creates slides/slide-01.jpg, slides/slide-02.jpg, etc.
 ```
 
 ### Creating the thumbnail grid
-
-Once slide images exist (from either option), create the grid:
 
 ```python
 from PIL import Image
@@ -272,12 +284,13 @@ grid.save("slides/thumbnails.jpg")
 
 ### If no conversion tools are available
 
-Deliver the .pptx and ask the user to open it and provide feedback. Skip automated visual validation.
+Deliver the `.pptx` and `.pdf` and ask the user to open them and provide feedback. Skip automated visual validation.
 
 ## Workflow Summary
 
 1. Install dependencies (`npm install pptxgenjs`)
 2. Create a `.js` file that builds the presentation using the API above
 3. Run with `node` to generate the `.pptx`
-4. Generate thumbnail grid for visual validation
-5. Review, fix, and regenerate until all slides pass
+4. Export to `.pdf`
+5. Generate slide images and thumbnail grid for visual validation
+6. Review, fix, and regenerate until all slides pass
