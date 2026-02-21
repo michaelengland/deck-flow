@@ -68,7 +68,7 @@ For each section, specify:
 - [Supporting point or evidence]
 - [Data, example, or proof point]
 **Emphasis**: [high / medium / low — how much visual weight this deserves]
-**Speaker notes**: [What to say, not what's on screen]
+**Speaker notes**: [Key points to hit — concise reference notes, not a script]
 **Transition**: [How this connects to next section]
 ```
 
@@ -141,7 +141,7 @@ Apply these to every section in the outline. If a section violates any of these,
 - **Headlines state the takeaway** — "Revenue grew 40%" not "Q3 Revenue Data". The headline IS the point.
 - **Keep supporting content focused** — 2-3 supporting points max per section. More than that means the section should be split.
 - **Prefer evidence over assertion** — Numbers, examples, and comparisons are stronger than bullet-point claims
-- **Speaker notes carry the detail** — Dense explanation belongs in notes, not on screen
+- **Speaker notes carry the detail** — Dense explanation belongs in notes, not on screen. Write them as concise reference notes (key points, data to cite, transitions to hit) not as conversational scripts. Exception: if the deck is documentation rather than a live presentation (where the reader is the presenter), notes can be more descriptive.
 - **Vary emphasis** — Not every section is high emphasis. Alternating intensity creates rhythm.
 
 ### Handling Dense Content
