@@ -159,6 +159,23 @@ slide.background = { color: "1A1A2E" };
 slide.background = { path: "background.jpg" };
 ```
 
+### Hyperlinks
+
+```javascript
+// Clickable text linking to a URL
+slide.addText("View the full report", {
+  x: 0.8, y: 4, w: 4, h: 0.5,
+  fontSize: 14, color: "0563C1",
+  hyperlink: { url: "https://example.com/report" }
+});
+
+// Inline footnote with hyperlink (for source citations)
+slide.addText([
+  { text: "Market grew 40%", options: { fontSize: 28, color: "1A1A1A" } },
+  { text: "1", options: { fontSize: 12, superscript: true, color: "0563C1", hyperlink: { url: "https://example.com/source" } } }
+], { x: 0.8, y: 2, w: 8.4, h: 1 });
+```
+
 ### Speaker Notes
 
 ```javascript

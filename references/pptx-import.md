@@ -59,7 +59,7 @@ Run the script from within the deck folder: `cd decks/quarterly-review && node q
 | SmartArt | Attempted as flattened individual shapes; may be incomplete |
 | Complex charts (3D, scatter, bubble) | Skipped with warning comment |
 | Shape adjustment handles | Default proportions used — custom callout shapes may differ |
-| Hyperlinks | Noted in comments but not functional in output |
+| Hyperlinks | Noted in comments but not functional in output. Add clickable links back during the present phase using PptxGenJS `hyperlink` |
 | Audio and video | Skipped |
 | Slide masters and layouts | Flattened — inherited styles resolved to direct values |
 

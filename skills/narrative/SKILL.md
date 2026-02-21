@@ -7,6 +7,11 @@ description: "This skill should be used when the user asks to brainstorm a prese
 
 Develop the story and message before thinking about slides. This skill converts rough presentation ideas into validated narrative documents through collaborative dialogue.
 
+## Prerequisites
+
+- User has a presentation idea, topic, or goal, OR
+- A PptxGenJS generation script exists from a previous import or creation (edit mode)
+
 ## Process
 
 ### Edit Mode Check
@@ -151,4 +156,4 @@ After narrative approval, offer next steps:
 - **Ruthless focus** - Cut anything that doesn't serve the key message (YAGNI for presentations)
 - **Validate incrementally** - Check understanding after each section
 - **Stay flexible** - Revisit earlier decisions if new information emerges
-- **Cite sources with URLs** — Every claim should trace back to a source with a URL where possible. Proactively research backing data when the user doesn't provide it. URLs become clickable links in the final `.pptx` and `.pdf`.
+- **Cite sources with URLs** — Every claim needs a source. Proactively research backing data.
