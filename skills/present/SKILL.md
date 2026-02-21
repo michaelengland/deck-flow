@@ -35,7 +35,7 @@ Before starting, check: does a deck folder in `decks/` contain a PptxGenJS gener
 Read the slide design document. Extract:
 - Visual direction (color palette, typography, visual style)
 - Each slide's layout, content, and speaker notes
-- Source references (for citation slides or footnotes)
+- Source references (URLs carried forward from upstream phases)
 
 ### 2. Generate Slides
 
@@ -54,6 +54,16 @@ Read the slide design document. Extract:
 - Use `bullet: true` for bullets, NEVER unicode symbols
 - Use `breakLine: true` between text array items for multi-line text
 - Only use web-safe fonts: Arial, Helvetica, Verdana, Georgia, Times New Roman, Courier New
+
+**Sources in the final output:**
+
+Source references carried from upstream phases should appear as clickable hyperlinks in the `.pptx` (and by extension, the `.pdf`). Use these approaches depending on context:
+
+- **Inline footnote numbers** — Small superscript-style numbers (e.g., "Market grew 40%¹") that link to the source URL via PptxGenJS `hyperlink: { url: "..." }`. Keep them subtle.
+- **Sources slide at the end** — A final slide listing all sources as clickable links: `[1] Label — url`. Use this for formal or data-heavy presentations.
+- **Speaker notes** — Always include source URLs in the speaker notes for the slides that reference them, even if they also appear inline or on a sources slide.
+
+The goal: every claim in the final deck can be traced back to its source via a clickable link, in both `.pptx` and `.pdf`.
 
 ### 3. Visual Validation
 

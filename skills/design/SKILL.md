@@ -123,7 +123,7 @@ Save the validated design to `decks/<name>/slide-design.md` (use the existing de
 [... continue for all slides ...]
 
 ## Source References
-- [Carried forward from content outline]
+- [Carried forward from content outline — preserve all URLs]
 ```
 
 ## Handoff

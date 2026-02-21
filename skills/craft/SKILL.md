@@ -118,7 +118,7 @@ Save the validated outline to `decks/<name>/content-outline.md` (use the existin
 [... continue for all sections ...]
 
 ## Source References
-- [Carried forward from narrative document]
+- [Carried forward from narrative — preserve all URLs]
 
 ## Design Notes
 - **Brand requirements**: [if any — logos, fonts, colors the user specified]

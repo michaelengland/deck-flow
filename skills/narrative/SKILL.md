@@ -80,15 +80,21 @@ After each section, pause for validation:
 
 ### 5. Track Source References
 
-Throughout the narrative process, track all source materials the user provides or references. These are critical for the downstream craft and present phases.
+Throughout the narrative process, actively build a source list. Sources are critical — they carry forward through craft, design, and into the final `.pptx` and `.pdf` as clickable links.
 
-For every claim, data point, or key argument in the narrative, note the source:
-- Documents, reports, or files the user shared
-- URLs, articles, or external references mentioned
-- Internal data, metrics, or research cited
-- Quotes or attributions
+**Push for research.** When the user makes claims without backing data, proactively search for supporting evidence — statistics, studies, reports, benchmarks. Offer what you find:
+> "You mentioned adoption is growing fast. I found [specific stat] from [source with URL] — want to use that?"
 
-Include these in the narrative document so they carry forward into slide creation.
+**Every source must include a URL where possible.** For every claim, data point, or key argument in the narrative:
+- URLs to articles, reports, research, or data sources (preferred — these become clickable links in the final output)
+- Documents or files the user shared (note the filename and relevant page/section)
+- Internal data or metrics (note the system or report they come from)
+- Quotes with attribution and source URL
+
+If a claim has no source, flag it:
+> "This claim doesn't have a source yet. Should we find one, or mark it as the presenter's own assertion?"
+
+Include all sources in the narrative document so they carry forward into slide creation.
 
 ### 6. Document the Narrative
 
@@ -122,9 +128,9 @@ Save the validated narrative to `decks/<name>/narrative.md` (create the deck fol
 [Summary and call-to-action]
 
 ## Source References
-- [Source 1]: [description — e.g., "Q3 Revenue Report, pg 12"]
-- [Source 2]: [description — e.g., "Customer survey results, June 2025"]
-- [Source 3]: [description]
+- [Short label](https://url) — brief description of what this supports
+- [Gartner 2025 Report](https://example.com/report) — market size and growth projections (slides 3-4)
+- [Internal Q3 data] — revenue figures, no public URL (presenter's source)
 
 ## Notes
 [Any constraints, open questions, or considerations for downstream phases]
@@ -145,4 +151,4 @@ After narrative approval, offer next steps:
 - **Ruthless focus** - Cut anything that doesn't serve the key message (YAGNI for presentations)
 - **Validate incrementally** - Check understanding after each section
 - **Stay flexible** - Revisit earlier decisions if new information emerges
-- **Cite sources** - Every claim should trace back to a source; this ensures credibility and makes downstream slide creation easier
+- **Cite sources with URLs** — Every claim should trace back to a source with a URL where possible. Proactively research backing data when the user doesn't provide it. URLs become clickable links in the final `.pptx` and `.pdf`.
