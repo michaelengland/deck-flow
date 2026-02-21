@@ -29,10 +29,11 @@ npm and pip packages are installed automatically during generation and import.
 
 ## Installation
 
-Install this plugin in Claude Code:
+Add the marketplace and install:
 
 ```bash
-claude plugin install michaelengland/deck-flow
+claude plugin marketplace add michaelengland/claude-plugins
+claude plugin install deck-flow
 ```
 
 ## Skills
