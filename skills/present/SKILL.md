@@ -1,6 +1,6 @@
 ---
 name: present
-description: "This skill should be used when the user asks to generate the PowerPoint, build the .pptx file, render slides, or invoke /deck-flow:present. Use AFTER /deck-flow:design. Executes a slide design document to produce the final .pptx and .pdf files."
+description: "This skill should be used when the user asks to generate the PowerPoint, build the .pptx file, render slides, or invoke /deckwright:present. Use AFTER /deckwright:design. Executes a slide design document to produce the final .pptx and .pdf files."
 ---
 
 # Present
@@ -9,11 +9,11 @@ Execute a slide design document to generate the final presentation. This skill t
 
 ## Prerequisites
 
-- A slide design document exists (from **/deck-flow:design**), OR
+- A slide design document exists (from **/deckwright:design**), OR
 - User provides a complete slide-by-slide spec with visual direction, OR
 - A PptxGenJS generation script exists from a previous import or creation (edit mode)
 
-If no design or generation script exists: "Would you like to use **/deck-flow:design** first to plan your slides and visual direction?"
+If no design or generation script exists: "Would you like to use **/deckwright:design** first to plan your slides and visual direction?"
 
 ## Process
 

@@ -1,6 +1,6 @@
 ---
 name: narrative
-description: "This skill should be used when the user asks to brainstorm a presentation, develop a story for slides, plan a talk, or invoke /deck-flow:narrative. Use BEFORE creating any slides. Explores audience, purpose, and story arc through sequential questioning. Produces a validated narrative document."
+description: "This skill should be used when the user asks to brainstorm a presentation, develop a story for slides, plan a talk, or invoke /deckwright:narrative. Use BEFORE creating any slides. Explores audience, purpose, and story arc through sequential questioning. Produces a validated narrative document."
 ---
 
 # Narrative
@@ -110,7 +110,7 @@ Save the validated narrative to `decks/<name>/narrative.md` (create the deck fol
 ```markdown
 # [Presentation Title] - Narrative
 
-> **Next step:** Use **/deck-flow:craft** to structure this narrative into a content outline.
+> **Next step:** Use **/deckwright:craft** to structure this narrative into a content outline.
 
 ## Overview
 - **Audience**: [who]
@@ -146,7 +146,7 @@ Save the validated narrative to `decks/<name>/narrative.md` (create the deck fol
 After narrative approval, offer next steps:
 
 > "Your narrative is ready. Next step:
-> - Use **/deck-flow:craft** to structure this into a content outline
+> - Use **/deckwright:craft** to structure this into a content outline
 > - Or refine this narrative further"
 
 ## Principles

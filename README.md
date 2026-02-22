@@ -1,4 +1,4 @@
-# deck-flow
+# deckwright
 
 Build and edit PowerPoint presentations with AI. A [Claude Code](https://claude.com/claude-code) plugin that generates `.pptx` and `.pdf` files through a guided workflow — separating story, structure, design, and slide generation into distinct phases for better results.
 
@@ -6,7 +6,7 @@ Build and edit PowerPoint presentations with AI. A [Claude Code](https://claude.
 
 When you ask AI to generate a presentation in one shot, you get generic slides with surface-level content. The AI has to guess your audience, pick a structure, decide on visuals, and write content all at once — and it cuts corners on all of them.
 
-deck-flow fixes this by breaking the problem into phases that build on each other:
+deckwright fixes this by breaking the problem into phases that build on each other:
 
 1. **Narrative first** — figure out what to say before touching slides. Who's the audience? What should they do afterward? What's the one thing they should remember? This alone transforms the output.
 2. **Structure before layout** — organize your key messages, evidence, and emphasis levels into sections. Decide what matters most before deciding how many slides it gets.
@@ -33,12 +33,12 @@ Add the marketplace and install:
 
 ```bash
 claude plugin marketplace add michaelengland/claude-plugins
-claude plugin install deck-flow
+claude plugin install deckwright
 ```
 
 ## Skills
 
-### `/deck-flow:narrative` — Develop your story
+### `/deckwright:narrative` — Develop your story
 
 Start here. This skill helps you figure out *what to say* before thinking about slides. Through a guided conversation, it explores:
 
@@ -59,7 +59,7 @@ It recommends from five proven narrative frameworks:
 
 **Output:** A narrative document saved to the deck folder.
 
-### `/deck-flow:craft` — Structure your content
+### `/deckwright:craft` — Structure your content
 
 Organizes your narrative into logical sections — without locking in slide counts or layouts. For each section it specifies:
 
@@ -70,7 +70,7 @@ Organizes your narrative into logical sections — without locking in slide coun
 
 **Output:** A content outline saved to the deck folder.
 
-### `/deck-flow:design` — Plan slides and visual direction
+### `/deckwright:design` — Plan slides and visual direction
 
 Turns your content outline into a complete slide design. This skill:
 
@@ -80,7 +80,7 @@ Turns your content outline into a complete slide design. This skill:
 
 **Output:** A slide design document saved to the deck folder.
 
-### `/deck-flow:present` — Generate the presentation
+### `/deckwright:present` — Generate the presentation
 
 Executes your slide design to produce the final `.pptx` and `.pdf`:
 
@@ -90,7 +90,7 @@ Executes your slide design to produce the final `.pptx` and `.pdf`:
 4. Fixes and regenerates until all slides pass
 5. Delivers both files
 
-### `/deck-flow:import` — Import an existing presentation
+### `/deckwright:import` — Import an existing presentation
 
 Already have a deck you want to improve? This skill takes a `.pptx` file and reverse-engineers it into an editable PptxGenJS generation script:
 
@@ -123,7 +123,7 @@ decks/quarterly-review/
 ### New Presentation
 
 ```
-/deck-flow:narrative → /deck-flow:craft → /deck-flow:design → /deck-flow:present
+/deckwright:narrative → /deckwright:craft → /deckwright:design → /deckwright:present
     (story)              (content)           (design)            (slides)
 ```
 
@@ -132,10 +132,10 @@ Each phase produces a document you can review and revise before moving to the ne
 ### Editing an Existing Deck
 
 ```
-/deck-flow:import → choose your starting point → /deck-flow:present
-                     ├─ /deck-flow:narrative (rethink the story)
-                     ├─ /deck-flow:craft (restructure content)
-                     ├─ /deck-flow:design (redesign visuals)
+/deckwright:import → choose your starting point → /deckwright:present
+                     ├─ /deckwright:narrative (rethink the story)
+                     ├─ /deckwright:craft (restructure content)
+                     ├─ /deckwright:design (redesign visuals)
                      └─ direct edits (tell Claude what to change)
 ```
 

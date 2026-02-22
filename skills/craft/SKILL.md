@@ -1,6 +1,6 @@
 ---
 name: craft
-description: "This skill should be used when the user asks to plan a presentation structure, create a content outline, organize sections for a deck, or invoke /deck-flow:craft. Use AFTER /deck-flow:narrative. Translates narrative into a structured content outline with sections, key messages, and flow."
+description: "This skill should be used when the user asks to plan a presentation structure, create a content outline, organize sections for a deck, or invoke /deckwright:craft. Use AFTER /deckwright:narrative. Translates narrative into a structured content outline with sections, key messages, and flow."
 ---
 
 # Craft
@@ -10,11 +10,11 @@ Translate a validated narrative into a structured content outline. This skill or
 ## Prerequisites
 
 Before using this skill, ensure one of:
-- A narrative document exists (from **/deck-flow:narrative**), OR
+- A narrative document exists (from **/deckwright:narrative**), OR
 - User provides clear presentation goals, audience, and key message, OR
 - A PptxGenJS generation script exists from a previous import or creation (edit mode)
 
-If no narrative or generation script exists, suggest: "Would you like to use **/deck-flow:narrative** first to develop your story?"
+If no narrative or generation script exists, suggest: "Would you like to use **/deckwright:narrative** first to develop your story?"
 
 ## Process
 
@@ -91,7 +91,7 @@ Save the validated outline to `decks/<name>/content-outline.md` (use the existin
 ```markdown
 # [Presentation Title] - Content Outline
 
-> **Next step:** Use **/deck-flow:design** to plan slides and visual direction.
+> **Next step:** Use **/deckwright:design** to plan slides and visual direction.
 
 ## Overview
 - **Estimated duration**: [X minutes]
@@ -130,7 +130,7 @@ Save the validated outline to `decks/<name>/content-outline.md` (use the existin
 After outline approval, offer next steps:
 
 > "Your content outline is ready. Next step:
-> - Use **/deck-flow:design** to plan slides and visual direction
+> - Use **/deckwright:design** to plan slides and visual direction
 > - Or refine the outline further"
 
 ## Content Principles

@@ -1,5 +1,5 @@
 {
-  "name": "deck-flow",
+  "name": "deckwright",
   "description": "Presentation workflow plugin: narrative (story), craft (content), design (slides + visual direction), present (generate PPTX), and import (reverse-engineer existing .pptx for editing)",
   "author": {
     "name": "Michael",

@@ -1,11 +1,11 @@
 ---
 name: import
-description: "This skill should be used when the user wants to import an existing .pptx file into deck-flow, bring in a PowerPoint that was created outside this tool, reverse-engineer a presentation for editing, or invoke /deck-flow:import. Converts a .pptx into a PptxGenJS generation script so it can be edited and regenerated through the deck-flow pipeline."
+description: "This skill should be used when the user wants to import an existing .pptx file into deckwright, bring in a PowerPoint that was created outside this tool, reverse-engineer a presentation for editing, or invoke /deckwright:import. Converts a .pptx into a PptxGenJS generation script so it can be edited and regenerated through the deckwright pipeline."
 ---
 
 # Import
 
-Import an existing PowerPoint presentation by reverse-engineering it into an editable PptxGenJS generation script. This is the entry point for editing decks that weren't created through deck-flow.
+Import an existing PowerPoint presentation by reverse-engineering it into an editable PptxGenJS generation script. This is the entry point for editing decks that weren't created through deckwright.
 
 ## Process
 
@@ -88,10 +88,10 @@ The generation script is now the source of truth for the deck. Present the user'
 
 > "Your presentation is imported. You can now:
 > - **Edit directly** — Tell me what to change and I'll modify the generation script
-> - Use **/deck-flow:narrative** to rethink the story
-> - Use **/deck-flow:craft** to restructure the content
-> - Use **/deck-flow:design** to redesign the visual direction
-> - Use **/deck-flow:present** to regenerate after any changes"
+> - Use **/deckwright:narrative** to rethink the story
+> - Use **/deckwright:craft** to restructure the content
+> - Use **/deckwright:design** to redesign the visual direction
+> - Use **/deckwright:present** to regenerate after any changes"
 
 ## Principles
 

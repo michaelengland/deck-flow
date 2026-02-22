@@ -1,6 +1,6 @@
 ---
 name: design
-description: "This skill should be used when the user asks to design slides, plan slide layouts, choose a visual direction for a presentation, or invoke /deck-flow:design. Use AFTER /deck-flow:craft. Researches visual design, plans how content sections become slides, and proposes the visual direction."
+description: "This skill should be used when the user asks to design slides, plan slide layouts, choose a visual direction for a presentation, or invoke /deckwright:design. Use AFTER /deckwright:craft. Researches visual design, plans how content sections become slides, and proposes the visual direction."
 ---
 
 # Design
@@ -9,11 +9,11 @@ Turn a content outline into a complete slide design — deciding how many slides
 
 ## Prerequisites
 
-- A content outline exists (from **/deck-flow:craft**), OR
+- A content outline exists (from **/deckwright:craft**), OR
 - User provides a clear structured outline, OR
 - A PptxGenJS generation script exists from a previous import or creation (edit mode)
 
-If no outline or generation script exists: "Would you like to use **/deck-flow:craft** first to structure your content?"
+If no outline or generation script exists: "Would you like to use **/deckwright:craft** first to structure your content?"
 
 ## Process
 
@@ -98,7 +98,7 @@ Save the validated design to `decks/<name>/slide-design.md` (use the existing de
 ```markdown
 # [Presentation Title] - Slide Design
 
-> **Next step:** Use **/deck-flow:present** to generate the .pptx file.
+> **Next step:** Use **/deckwright:present** to generate the .pptx file.
 
 ## Visual Direction
 - **Color palette**: [hex codes — 60% dominant / 30% secondary / 10% accent]
@@ -131,7 +131,7 @@ Save the validated design to `decks/<name>/slide-design.md` (use the existing de
 After design approval, offer next steps:
 
 > "Your slide design is ready. Next step:
-> - Use **/deck-flow:present** to generate the actual .pptx file
+> - Use **/deckwright:present** to generate the actual .pptx file
 > - Or refine the design further"
 
 ## Slide Content Constraints
