@@ -19,10 +19,13 @@ If no outline or generation script exists: "Would you like to use **/deckwright:
 
 ### Edit Mode Check
 
-Before starting, check: does a deck folder in `decks/` contain a PptxGenJS generation script (a `.js` file containing `require("pptxgenjs")`)?
+Before starting, determine mode using **either** signal:
 
-- **If no**: Follow the standard process below.
-- **If yes**: This is an edit. Read the generation script to understand the current deck, then:
+1. **Session context**: If a prior skill this session stated this is an "edit session", treat this as edit mode — do not re-check the filesystem.
+2. **Filesystem check**: If no session context exists, check whether a deck folder in `decks/` contains a PptxGenJS generation script (a `.js` file containing `require("pptxgenjs")`).
+
+- **If no generation script and no edit-mode context**: Follow the standard process below.
+- **If edit mode** (either signal): This is an edit. Read the generation script to understand the current deck, then:
   1. Extract the current visual direction — collect all hex colors used (with frequency), fonts, size scales, and layout patterns across slides
   2. Summarize the current design back to the user:
      > "Here's the current visual direction I see:
@@ -128,10 +131,16 @@ Save the validated design to `decks/<name>/slide-design.md` (use the existing de
 
 ## Handoff
 
-After design approval, offer next steps:
+After design approval, offer next steps. **Carry forward the session mode** so downstream skills inherit the correct context:
 
-> "Your slide design is ready. Next step:
-> - Use **/deckwright:present** to generate the actual .pptx file
+If this was **edit mode**:
+> "Your slide design is ready. **Edit session** — the generation script will be updated in place.
+> - Use **/deckwright:present** to apply the changes and regenerate the .pptx
+> - Or refine the design further"
+
+If this was a **new presentation**:
+> "Your slide design is ready. **New presentation** — ready to generate.
+> - Use **/deckwright:present** to generate the .pptx file
 > - Or refine the design further"
 
 ## Slide Content Constraints

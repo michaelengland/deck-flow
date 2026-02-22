@@ -143,9 +143,15 @@ Save the validated narrative to `decks/<name>/narrative.md` (create the deck fol
 
 ## Handoff
 
-After narrative approval, offer next steps:
+After narrative approval, offer next steps. **Explicitly state the session mode** so downstream skills inherit the correct context:
 
-> "Your narrative is ready. Next step:
+If this was **edit mode** (a generation script existed):
+> "Your narrative is ready. **Edit session** — the existing deck will be updated, not rebuilt from scratch.
+> - Use **/deckwright:craft** to restructure the content outline
+> - Or refine this narrative further"
+
+If this was a **new presentation**:
+> "Your narrative is ready. **New presentation** — the full workflow will build from this narrative.
 > - Use **/deckwright:craft** to structure this into a content outline
 > - Or refine this narrative further"
 

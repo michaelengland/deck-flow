@@ -20,10 +20,13 @@ If no narrative or generation script exists, suggest: "Would you like to use **/
 
 ### Edit Mode Check
 
-Before starting, check: does a deck folder in `decks/` contain a PptxGenJS generation script (a `.js` file containing `require("pptxgenjs")`)?
+Before starting, determine mode using **either** signal:
 
-- **If no**: Follow the standard process below.
-- **If yes**: This is an edit. Read the generation script to understand the current deck, then:
+1. **Session context**: If the narrative phase (or any earlier step this session) stated this is an "edit session", treat this as edit mode — do not re-check the filesystem.
+2. **Filesystem check**: If no session context exists, check whether a deck folder in `decks/` contains a PptxGenJS generation script (a `.js` file containing `require("pptxgenjs")`).
+
+- **If no generation script and no edit-mode context**: Follow the standard process below.
+- **If edit mode** (either signal): This is an edit. Read the generation script to understand the current deck, then:
   1. Group slides into logical sections based on topic flow and any divider/title slides
   2. Present the current content structure to the user:
      > "Here's the current structure I see:
@@ -129,9 +132,15 @@ Save the validated outline to `decks/<name>/content-outline.md` (use the existin
 
 ## Handoff
 
-After outline approval, offer next steps:
+After outline approval, offer next steps. **Carry forward the session mode** so downstream skills inherit the correct context:
 
-> "Your content outline is ready. Next step:
+If this was **edit mode**:
+> "Your content outline is ready. **Edit session** — the existing deck will be updated.
+> - Use **/deckwright:design** to revise the visual direction
+> - Or refine the outline further"
+
+If this was a **new presentation**:
+> "Your content outline is ready. **New presentation** — building from this outline.
 > - Use **/deckwright:design** to plan slides and visual direction
 > - Or refine the outline further"
 
