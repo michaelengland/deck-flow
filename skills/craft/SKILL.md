@@ -1,6 +1,6 @@
 ---
 name: craft
-description: "This skill should be used when the user asks to plan a presentation structure, create a content outline, organize sections for a deck, or invoke /deckwright:craft. Use AFTER /deckwright:narrative. Translates narrative into a structured content outline with sections, key messages, and flow."
+description: "This skill should be used when the user asks to plan a presentation structure, create a content outline, organize sections for a deck, or invoke /deckwright:craft. Translates narrative into a structured content outline with sections, key messages, and flow."
 ---
 
 # Craft
@@ -77,6 +77,8 @@ For each section, specify:
 - **medium** — Standard treatment, clear and clean
 - **low** — Brief, transitional, or supporting (could be a simple divider or combined with adjacent content)
 
+**For how emphasis maps to slide layouts**, see `${CLAUDE_PLUGIN_ROOT}/references/slide-patterns.md` — the layout catalog consulted in the design phase.
+
 ### 4. Validate Incrementally
 
 Present the outline in batches. After each batch:
@@ -115,7 +117,7 @@ Save the validated outline to `decks/<name>/content-outline.md` (use the existin
 **Speaker notes**: [talking points]
 **Transition**: [connection to next]
 
-[... continue for all sections ...]
+[Repeat Section block for each remaining section]
 
 ## Source References
 - [Carried forward from narrative — preserve all URLs]

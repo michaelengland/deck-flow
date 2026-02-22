@@ -1,6 +1,6 @@
 ---
 name: narrative
-description: "This skill should be used when the user asks to brainstorm a presentation, develop a story for slides, plan a talk, or invoke /deckwright:narrative. Use BEFORE creating any slides. Explores audience, purpose, and story arc through sequential questioning. Produces a validated narrative document."
+description: "This skill should be used when the user asks to brainstorm a presentation, develop a story for slides, plan a talk, or invoke /deckwright:narrative. Explores audience, purpose, and story arc through sequential questioning. Produces a validated narrative document."
 ---
 
 # Narrative
@@ -59,7 +59,7 @@ Present 2-3 narrative frameworks that fit the content. Lead with your recommenda
 
 **For detailed framework guidance**, read `${CLAUDE_PLUGIN_ROOT}/references/narrative-frameworks.md`.
 
-**Quick reference:**
+**Quick reference** (full details in the reference above):
 
 | Framework | Best for |
 |-----------|----------|

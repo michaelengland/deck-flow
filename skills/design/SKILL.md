@@ -1,6 +1,6 @@
 ---
 name: design
-description: "This skill should be used when the user asks to design slides, plan slide layouts, choose a visual direction for a presentation, or invoke /deckwright:design. Use AFTER /deckwright:craft. Researches visual design, plans how content sections become slides, and proposes the visual direction."
+description: "This skill should be used when the user asks to design slides, plan slide layouts, choose a visual direction for a presentation, or invoke /deckwright:design. Researches visual design, plans how content sections become slides, and proposes the visual direction."
 ---
 
 # Design
@@ -46,8 +46,8 @@ Read the content outline document. Extract:
 
 **MANDATORY before any design decisions.** This step prevents generic, template-looking output.
 
-1. Read `${CLAUDE_PLUGIN_ROOT}/references/visual-design-principles.md` — concrete benchmarks, anti-patterns, and a visual checklist drawn from Apple keynotes, TED talks, Airbnb's pitch deck, and peer-reviewed research.
-2. Read `${CLAUDE_PLUGIN_ROOT}/references/slide-patterns.md` — layout catalog with usage guidance for choosing the right layout per content type.
+1. Read `${CLAUDE_PLUGIN_ROOT}/references/visual-design-principles.md` — concrete benchmarks, anti-patterns, whitespace quantification, and a visual checklist drawn from Apple keynotes, TED talks, Airbnb's pitch deck, and peer-reviewed research. This is the primary guard against generic, template-looking output.
+2. Read `${CLAUDE_PLUGIN_ROOT}/references/slide-patterns.md` — the full layout catalog with per-layout usage guidance, a content-type selection table, and common layout mistakes to avoid.
 3. Search the web for visual inspiration relevant to the specific presentation topic and audience. Look for:
    - Best-in-class decks in the user's industry or presentation type
    - Current design trends (typography, color, layout) for the target context

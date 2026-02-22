@@ -17,10 +17,14 @@ import re
 import sys
 from collections import OrderedDict
 
-from pptx import Presentation
-from pptx.enum.shapes import MSO_SHAPE_TYPE, PP_PLACEHOLDER
-from pptx.enum.text import PP_ALIGN
-from pptx.util import Emu
+try:
+    from pptx import Presentation
+    from pptx.enum.shapes import MSO_SHAPE_TYPE, PP_PLACEHOLDER
+    from pptx.enum.text import PP_ALIGN
+    from pptx.util import Emu
+except ImportError:
+    print("Error: python-pptx is not installed. Run: pip install python-pptx", file=sys.stderr)
+    sys.exit(1)
 
 # ---------------------------------------------------------------------------
 # Constants

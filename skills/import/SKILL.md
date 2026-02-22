@@ -7,6 +7,10 @@ description: "This skill should be used when the user wants to import an existin
 
 Import an existing PowerPoint presentation by reverse-engineering it into an editable PptxGenJS generation script. This is the entry point for editing decks that weren't created through deckwright.
 
+## Prerequisites
+
+- User has a `.pptx` file they want to edit or improve
+
 ## Process
 
 ### 1. Identify the Source File
@@ -23,32 +27,15 @@ Read `${CLAUDE_PLUGIN_ROOT}/references/pptx-import.md` for the full import workf
 
 ### 3. Run the Reverse-Engineering Script
 
-1. Ensure python-pptx is installed: `pip install python-pptx`
-2. Run the script:
-   ```bash
-   python ${CLAUDE_PLUGIN_ROOT}/scripts/pptx-to-js.py <input.pptx>
-   ```
-   This creates a deck folder at `decks/<name>/` containing the generation script and extracted images. For example, `quarterly-review.pptx` produces:
-   ```
-   decks/quarterly-review/
-     quarterly-review.js     # generation script
-     assets/                 # extracted images
-   ```
-3. Check the exit code. If non-zero, read stderr and diagnose the issue.
+Follow the "Running the Script" section in `${CLAUDE_PLUGIN_ROOT}/references/pptx-import.md` — it covers installation, invocation, and the expected output folder structure. Check the exit code. If non-zero, read stderr and diagnose the issue using the Troubleshooting section in that reference.
 
 ### 4. Generate Thumbnails from the Original
 
-Before running the generated script, convert the **original** `.pptx` to slide images so you have a baseline for comparison. Use the validation workflow from `${CLAUDE_PLUGIN_ROOT}/references/pptx-generation.md` (PDF Export and Visual Validation section), saving output to `decks/<name>/original/`:
-
-```
-decks/<name>/original/
-  slides/slide-01.jpg, slide-02.jpg, ...
-  slides/thumbnails.jpg
-```
+Before running the generated script, convert the **original** `.pptx` to slide images as a visual baseline for comparison. Follow the PDF Export and Visual Validation workflow in `${CLAUDE_PLUGIN_ROOT}/references/pptx-generation.md`, saving output to `decks/<name>/original/slides/`.
 
 ### 5. Validate and Fix (Loop)
 
-This step mirrors the present skill's validation loop — regenerate, compare, fix, repeat.
+Follow the same regenerate-compare-fix loop used in `/deckwright:present`: regenerate, compare slide-by-slide against the originals, fix differences, repeat.
 
 1. Install PptxGenJS if needed: `npm install pptxgenjs`
 2. Run the generated script from the deck folder: `cd decks/<name> && node <name>.js`
@@ -97,5 +84,5 @@ The generation script is now the source of truth for the deck. Present the user'
 
 - **Mechanical, not interpretive** — The import produces code, not creative documents. It is a translation, not an analysis.
 - **Validate before proceeding** — Always regenerate and compare before declaring the import complete.
-- **Surface limitations honestly** — Do not hide what was lost in translation. The user should know about font substitutions, gradient conversions, and skipped elements.
+- **Surface limitations honestly** — Do not hide what was lost in translation. Report font substitutions, gradient conversions, and skipped elements explicitly in the final summary.
 - **The generation script is the source of truth** — After import, all edits flow through the `.js` file.

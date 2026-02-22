@@ -1,6 +1,6 @@
 ---
 name: present
-description: "This skill should be used when the user asks to generate the PowerPoint, build the .pptx file, render slides, or invoke /deckwright:present. Use AFTER /deckwright:design. Executes a slide design document to produce the final .pptx and .pdf files."
+description: "This skill should be used when the user asks to generate the PowerPoint, build the .pptx file, render slides, or invoke /deckwright:present. Executes a slide design document to produce the final .pptx and .pdf files."
 ---
 
 # Present
@@ -48,12 +48,7 @@ Read the slide design document. Extract:
 4. Convert to slide images for validation (see "Visual Validation" in the reference)
 5. Create a thumbnail grid from the slide images
 
-**Critical reminders (from reference):**
-- NEVER use "#" in hex colors — causes file corruption
-- NEVER reuse option objects — PptxGenJS mutates them in-place
-- Use `bullet: true` for bullets, NEVER unicode symbols
-- Use `breakLine: true` between text array items for multi-line text
-- Only use web-safe fonts: Arial, Helvetica, Verdana, Georgia, Times New Roman, Courier New
+The reference includes a **Critical Pitfalls** section — follow it exactly before writing any code. Key failure modes covered: hex color formatting, opacity encoding, object reuse, bullet syntax, and gradient limitations.
 
 **Sources in the final output:**
 
@@ -72,6 +67,7 @@ Review the thumbnail grid. For each slide check:
 - Is color used for meaning, not decoration?
 - No cards/boxes used as containers?
 - No decorative gradients, shadows, or icon grids?
+- Would removing any visual element break the meaning? (If not, remove it)
 - Does it feel like a designed slide or a template? (If template — simplify)
 - Text cutoff, overflow, or contrast issues?
 - Can it be understood in under 3 seconds?
