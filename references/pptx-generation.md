@@ -52,6 +52,7 @@ These cause silent file corruption or rendering bugs. Follow them exactly.
 4. **Use `breakLine: true`** between array items for multi-line text within a single text box.
 5. **NEVER reuse option objects** — PptxGenJS mutates them in-place (converting values to EMU). Use factory functions that return fresh objects each time.
 6. **Gradient fills are NOT supported** — Use a gradient image as a slide/shape background instead.
+7. **NEVER hardcode slide counts** in `console.log` or comments at the end of the script — use `pres.slides.length` so the count stays correct when slides are added or removed.
 
 ## Key API
 
